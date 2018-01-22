@@ -134,9 +134,9 @@ Elasticsearch为Java用户提供了两种内置客户端：
 
 #### 依赖环境：JDK8
 #### 安装步骤：
-第一步：下载(可能很卡、请耐心等待) wget http://xbib.org/repository/org/xbib/elasticsearch/importer/elasticsearch-jdbc/2.3.2.0/elasticsearch-jdbc-2.3.2.0-dist.zip 
-第二步：解压 unzip elasticsearch-jdbc-2.3.2.0-dist.zip 
-第三步：配置脚本mysql_import_es.sh
+- 这里是列表文本第一步：下载(可能很卡、请耐心等待) wget http://xbib.org/repository/org/xbib/elasticsearch/importer/elasticsearch-jdbc/2.3.2.0/elasticsearch-jdbc-2.3.2.0-dist.zip 
+- 这里是列表文本第二步：解压 unzip elasticsearch-jdbc-2.3.2.0-dist.zip 
+- 这里是列表文本第三步：配置脚本mysql_import_es.sh
 ```
 #!/bin/sh
 # elasticsearch-jdbc 安装路径
@@ -167,7 +167,7 @@ gmt_create AS gmtCreate,plat_from AS platFrom FROM sys_log",
        org.xbib.tools.JDBCImporter
 
 ```
-第四部：授权并执行
+- 这里是列表文本第四部：授权并执行
 ```
 chmod +x mysql_import_es.sh
 ./mysql_import_es.sh
