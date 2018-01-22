@@ -1,2 +1,2 @@
-# spring-boot-elasticsearch
-ES全文搜索引擎
+## 简介
+Elasticsearch （ES）是一个基于 Lucene 的开源搜索引擎，它不但稳定、可靠、快速，而且也具有良好的水平扩展能力，是专门为分布式环境设计的。
