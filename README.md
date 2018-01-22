@@ -5,6 +5,7 @@ JDK1.7、Maven、Eclipse、SpringBoot1.5.9、elasticsearch2.4.6、Dubbox2.8.4、
 ## 项目结构
 
 ```
+     
 ├─src
 │  ├─main
 │  │  ├─java
@@ -13,12 +14,16 @@ JDK1.7、Maven、Eclipse、SpringBoot1.5.9、elasticsearch2.4.6、Dubbox2.8.4、
 │  │  │          └─es
 │  │  │              │  Application.java
 │  │  │              │  
+│  │  │              ├─common
+│  │  │              │  ├─constant
+│  │  │              │  │      PageConstant.java
+│  │  │              │  │      
+│  │  │              │  └─interceptor
+│  │  │              │          MyAdapter.java
+│  │  │              │          
 │  │  │              └─log
-│  │  │                  ├─constant
-│  │  │                  │      PageConstant.java
-│  │  │                  │      
 │  │  │                  ├─controller
-│  │  │                  │      LogRestController.java
+│  │  │                  │      LogController.java
 │  │  │                  │      
 │  │  │                  ├─entity
 │  │  │                  │      Pages.java
@@ -34,12 +39,33 @@ JDK1.7、Maven、Eclipse、SpringBoot1.5.9、elasticsearch2.4.6、Dubbox2.8.4、
 │  │  │                              LogServiceImpl.java
 │  │  │                              
 │  │  ├─resources
-│  │  │      application-dev.properties
-│  │  │      application-prod.properties
-│  │  │      application-test.properties
-│  │  │      application.yml
-│  │  │      spring-context-dubbo.xml
-│  │  │      
+│  │  │  │  application-dev.properties
+│  │  │  │  application-prod.properties
+│  │  │  │  application-test.properties
+│  │  │  │  application.yml
+│  │  │  │  spring-context-dubbo.xml
+│  │  │  │  
+│  │  │  ├─static
+│  │  │  │  ├─iview
+│  │  │  │  │  │  iview.css
+│  │  │  │  │  │  iview.min.js
+│  │  │  │  │  │  
+│  │  │  │  │  └─fonts
+│  │  │  │  │          ionicons.eot
+│  │  │  │  │          ionicons.svg
+│  │  │  │  │          ionicons.ttf
+│  │  │  │  │          ionicons.woff
+│  │  │  │  │          
+│  │  │  │  ├─jquery
+│  │  │  │  │      jquery-3.2.1.min.js
+│  │  │  │  │      
+│  │  │  │  └─vue
+│  │  │  │          vue.min.js
+│  │  │  │          
+│  │  │  └─templates
+│  │  │      └─log
+│  │  │              index.html
+│  │  │              
 │  │  └─webapp
 │  │      │  index.jsp
 │  │      │  
@@ -48,6 +74,13 @@ JDK1.7、Maven、Eclipse、SpringBoot1.5.9、elasticsearch2.4.6、Dubbox2.8.4、
 │  │              
 │  └─test
 │      └─java
+│          └─com
+│              └─itstyle
+│                  └─es
+│                      └─test
+│                              Logs.java
+│                              
+
 
 ```
 ## 项目截图
