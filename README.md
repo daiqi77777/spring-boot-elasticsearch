@@ -26,6 +26,7 @@ spring.data.elasticsearch.cluster-nodes=192.168.1.180:9300
 
 ## 项目结构
 
+```
 ├─src
 │  ├─main
 │  │  ├─java
@@ -70,6 +71,7 @@ spring.data.elasticsearch.cluster-nodes=192.168.1.180:9300
 │  └─test
 │      └─java
 
+```
 
 ## 全文检索
 
