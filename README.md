@@ -24,6 +24,53 @@ spring.data.elasticsearch.cluster-name=elasticsearch
 spring.data.elasticsearch.cluster-nodes=192.168.1.180:9300
 ```
 
+## 项目结构
+
+├─src
+│  ├─main
+│  │  ├─java
+│  │  │  └─com
+│  │  │      └─itstyle
+│  │  │          └─es
+│  │  │              │  Application.java
+│  │  │              │  
+│  │  │              └─log
+│  │  │                  ├─constant
+│  │  │                  │      PageConstant.java
+│  │  │                  │      
+│  │  │                  ├─controller
+│  │  │                  │      LogRestController.java
+│  │  │                  │      
+│  │  │                  ├─entity
+│  │  │                  │      Pages.java
+│  │  │                  │      SysLogs.java
+│  │  │                  │      
+│  │  │                  ├─repository
+│  │  │                  │      ElasticLogRepository.java
+│  │  │                  │      
+│  │  │                  └─service
+│  │  │                      │  LogService.java
+│  │  │                      │  
+│  │  │                      └─impl
+│  │  │                              LogServiceImpl.java
+│  │  │                              
+│  │  ├─resources
+│  │  │      application-dev.properties
+│  │  │      application-prod.properties
+│  │  │      application-test.properties
+│  │  │      application.yml
+│  │  │      spring-context-dubbo.xml
+│  │  │      
+│  │  └─webapp
+│  │      │  index.jsp
+│  │      │  
+│  │      └─WEB-INF
+│  │              web.xml
+│  │              
+│  └─test
+│      └─java
+
+
 ## 全文检索
 
 ### 简介
