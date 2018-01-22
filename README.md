@@ -150,6 +150,107 @@ es-head主要有三个方面的操作：
 
 ![Elasticsearch-Head](https://gitee.com/uploads/images/2018/0122/172610_74771172_87650.png "ES_head.png")
 
+
+## IK Analysis for Elasticsearch
+
+下载安装：
+
+
+- 方式一 - download pre-build package from here: https://github.com/medcl/elasticsearch-analysis-ik/releases
+ unzip plugin to folder your-es-root/plugins/
+ 
+- 方式一二 - use elasticsearch-plugin to install ( version > v5.5.1 ):
+ ./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v6.0.0/elasticsearch-analysis-ik-6.0.0.zip
+
+由于Elasticsearch版本是2.4.6，这里选择IK版本为1.10.6
+
+```
+wget https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v1.10.6/elasticsearch-analysis-ik-1.10.6.zip
+```
+
+下载解压以后在 Elasticsearch  的config下的elasticsearch.yml文件中，添加如下代码(2.0以上可以不设置)。
+```
+index:  
+      analysis:                     
+        analyzer:        
+          ik:  
+              alias: [ik_analyzer]  
+              type: org.elasticsearch.index.analysis.IkAnalyzerProvider  
+          ik_max_word:  
+              type: ik  
+              use_smart: false  
+          ik_smart:  
+              type: ik  
+              use_smart: true
+```
+或者
+```
+index.analysis.analyzer.ik.type : “ik”
+```
+
+
+##### 安装前：
+
+```
+http://192.168.1.180:9200/_analyze?analyzer=standard&pretty=true&text=我爱你中国
+{
+  "tokens" : [ {
+    "token" : "我",
+    "start_offset" : 0,
+    "end_offset" : 1,
+    "type" : "<IDEOGRAPHIC>",
+    "position" : 0
+  }, {
+    "token" : "爱",
+    "start_offset" : 1,
+    "end_offset" : 2,
+    "type" : "<IDEOGRAPHIC>",
+    "position" : 1
+  }, {
+    "token" : "你",
+    "start_offset" : 2,
+    "end_offset" : 3,
+    "type" : "<IDEOGRAPHIC>",
+    "position" : 2
+  }, {
+    "token" : "中",
+    "start_offset" : 3,
+    "end_offset" : 4,
+    "type" : "<IDEOGRAPHIC>",
+    "position" : 3
+  }, {
+    "token" : "国",
+    "start_offset" : 4,
+    "end_offset" : 5,
+    "type" : "<IDEOGRAPHIC>",
+    "position" : 4
+  } ]
+}
+```
+##### 安装后：
+http://121.42.155.213:9200/_analyze?analyzer=ik&pretty=true&text=我爱你中国
+{
+  "tokens" : [ {
+    "token" : "我爱你",
+    "start_offset" : 0,
+    "end_offset" : 3,
+    "type" : "CN_WORD",
+    "position" : 0
+  }, {
+    "token" : "爱你",
+    "start_offset" : 1,
+    "end_offset" : 3,
+    "type" : "CN_WORD",
+    "position" : 1
+  }, {
+    "token" : "中国",
+    "start_offset" : 3,
+    "end_offset" : 5,
+    "type" : "CN_WORD",
+    "position" : 2
+  } ]
+}
+
 ## 数据同步
 
 使用第三方工具类库elasticsearch-jdbc实现MySql到elasticsearch的同步。
