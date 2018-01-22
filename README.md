@@ -132,7 +132,10 @@ Elasticsearch为Java用户提供了两种内置客户端：
 
 ![同步架构图](https://gitee.com/uploads/images/2018/0122/165124_85362805_87650.png "elasticsearch-jdbc.png")
 
-#### 依赖环境：JDK8
+#### 运行环境：
+
+centos7.5、JDK8、elasticsearch-jdbc-2.3.2.0
+
 #### 安装步骤：
 - 这里是列表文本第一步：下载(可能很卡、请耐心等待) wget http://xbib.org/repository/org/xbib/elasticsearch/importer/elasticsearch-jdbc/2.3.2.0/elasticsearch-jdbc-2.3.2.0-dist.zip 
 - 这里是列表文本第二步：解压 unzip elasticsearch-jdbc-2.3.2.0-dist.zip 
