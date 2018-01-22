@@ -1,4 +1,4 @@
-package com.itstyle.es.log.constant;
+package com.itstyle.es.common.constant;
 
 public class PageConstant {
 	public static final Integer PAGE_SIZE = 10;          // 每页数量

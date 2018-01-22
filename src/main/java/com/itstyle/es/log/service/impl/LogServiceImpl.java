@@ -14,7 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Service;
-import com.itstyle.es.log.constant.PageConstant;
+
+import com.itstyle.es.common.constant.PageConstant;
 import com.itstyle.es.log.entity.Pages;
 import com.itstyle.es.log.entity.SysLogs;
 import com.itstyle.es.log.repository.ElasticLogRepository;
@@ -87,7 +88,7 @@ public class LogServiceImpl implements LogService {
         builder.must(QueryBuilders.termQuery("platFrom", platFrom));
         //设置多字段组合模糊搜索
         if(StringUtils.isNotBlank(searchContent)){
-        	builder.must(QueryBuilders.multiMatchQuery(searchContent,"username","operation"));
+        	builder.must(QueryBuilders.multiMatchQuery(searchContent,"username","operation","exceptionDetail"));
         }
         //设置排序
         FieldSortBuilder sort = SortBuilders.fieldSort("id").order(SortOrder.DESC);
