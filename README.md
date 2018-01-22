@@ -9,10 +9,13 @@ spring-boot-starter-parent-1.5.9.RELEASE、spring-data-elasticsearch-2.1.9.RELEA
 
 ## 安装说明
 - 使用本地ElasticSearch服务
+```
 spring.data.elasticsearch.cluster-name=elasticsearch
 #默认就是本机,如果要使用远程服务器，或者局域网服务器，那就需要在这里配置ip:prot;可以配置多个，以逗号分隔，相当于集群。
 #spring.data.elasticsearch.cluster-nodes=192.168.1.180:9300
+```
 - 使用远程ElasticSearch服务
 需要自行安装ElasticSearch，注意ElasticSearch版本尽量要与JAR包一致。
+
 下载地址：https://www.elastic.co/downloads/past-releases/elasticsearch-2-4-6
 
