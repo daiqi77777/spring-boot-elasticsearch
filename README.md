@@ -101,6 +101,8 @@ spring-boot-starter-parent-1.5.9.RELEASE、spring-data-elasticsearch-2.1.9.RELEA
 ```
 spring.data.elasticsearch.cluster-name=elasticsearch
 #默认就是本机,如果要使用远程服务器，或者局域网服务器，那就需要在这里配置ip:prot;可以配置多个，以逗号分隔，相当于集群。
+#Java客户端：通过9300端口与集群进行交互
+#其他所有程序语言：都可以使用RESTful API，通过9200端口的与Elasticsearch进行通信。
 #spring.data.elasticsearch.cluster-nodes=192.168.1.180:9300
 ```
 ### 使用远程ElasticSearch服务(application-dev.properties)
