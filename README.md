@@ -70,7 +70,7 @@ spring.data.elasticsearch.cluster-name=elasticsearch
  
 - 下载地址：https://www.elastic.co/downloads/past-releases/elasticsearch-2-4-6
 
-- 安装说明：http://www.52itstyle.com/thread-20114-1-1.html
+- 安装说明：http://www.52itstyle.com/thread-20114-1-1.html、新版本不建议使用root用户启动，需要自建ElasticSearch用户，也可以使用以下命令启动 elasticsearch -Des.insecure.allow.root=true -d 或者在elasticsearch中加入ES_JAVA_OPTS="-Des.insecure.allow.root=true"。
 
 
 
