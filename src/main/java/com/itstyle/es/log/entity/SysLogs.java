@@ -23,6 +23,25 @@ import org.springframework.data.elasticsearch.annotations.Document;
  * String refreshInterval() default "1s";//刷新间隔
 
  * String indexStoreType() default "fs";//索引文件存储类型
+ * 
+ * @Field 参数说明
+ * FieldType type() default FieldType.Auto;#自动检测属性的类型
+ 
+ * FieldIndex index() default FieldIndex.analyzed;#默认情况下分词
+ 
+ * DateFormat format() default DateFormat.none;
+ 
+ * String pattern() default "";
+ 
+ * boolean store() default false;#默认情况下不存储原文
+ 
+ * String searchAnalyzer() default "";#指定字段搜索时使用的分词器
+ 
+ * String indexAnalyzer() default "";#指定字段建立索引时指定的分词器
+ 
+ * String[] ignoreFields() default {};#如果某个字段需要被忽略
+ 
+ * boolean includeInParent() default false;
  */
 @Document(indexName="elasticsearch",type="sysLog",indexStoreType="fs",shards=5,replicas=1,refreshInterval="-1")
 public class SysLogs implements Serializable {

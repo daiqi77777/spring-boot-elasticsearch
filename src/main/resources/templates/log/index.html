@@ -4,7 +4,7 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>日志查询</title>
+    <title>日志查询-By blog.52itstyle.com</title>
     <link th:href="@{/iview/iview.css}" rel="stylesheet"/>
     <style type="text/css">
 	[v-cloak] {
@@ -15,8 +15,8 @@
 <body>
 <div style="margin-left: 10px;margin-right: 10px" id="app" v-cloak>
    <div style="margin-bottom: 10px;margin-top: 10px">
-		<i-input placeholder="输入搜索信息" v-model="log.searchContent" style="width: 200px"></i-input>
-		<i-button type="primary"  icon="ios-search" @click="list" >查询</i-button>
+		<i-input placeholder="输入搜索信息" v-model="log.searchContent"  @keyup.enter.native="list"  style="width: 200px"></i-input>
+		<i-button type="primary"  icon="ios-search" @click="list"  >查询</i-button>
 	</div>
 	<template> 
 		<i-table border  :content="self" :columns="tableTitle" :data="consultData"></i-table>
