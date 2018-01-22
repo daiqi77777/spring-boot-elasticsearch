@@ -1,4 +1,23 @@
-## 概述
+## 版本介绍
+
+spring-boot-starter-parent-1.5.9.RELEASE、spring-data-elasticsearch-2.1.9.RELEAS、elasticsearch-2.4.6(5.0+以上需要依赖JDK8)
+
+截止2018年1月22日，ElasticSearch目前最新的已到6.1.2，但是spring-boot的更新速度远远跟不上ElasticSearch更新的速度，目前spring-boot支持的最新版本是elasticsearch-2.4.6。
+
+## 安装说明
+- 使用本地ElasticSearch服务
+```
+spring.data.elasticsearch.cluster-name=elasticsearch
+#默认就是本机,如果要使用远程服务器，或者局域网服务器，那就需要在这里配置ip:prot;可以配置多个，以逗号分隔，相当于集群。
+#spring.data.elasticsearch.cluster-nodes=192.168.1.180:9300
+```
+- 使用远程ElasticSearch服务
+
+需要自行安装ElasticSearch，注意ElasticSearch版本尽量要与JAR包一致。
+
+下载地址：https://www.elastic.co/downloads/past-releases/elasticsearch-2-4-6
+
+## 全文检索
 
 ### 简介
 
@@ -37,23 +56,4 @@ ES 是一个分布式系统，我们一开始就应该以集群的方式来使�
 - /${index}/${type}/_search：搜索
 
 v 是 verbose 的意思，这样可以更可读（有表头，有对齐），_cat 是监测相关的 APIs，/_cat?help 来获取所有接口。${index} 和 ${type} 分别是具体的某一索引某一类型，是分层次的。我们也可以直接在所有索引所有类型上进行搜索：/_search。
-
-## 版本介绍
-
-spring-boot-starter-parent-1.5.9.RELEASE、spring-data-elasticsearch-2.1.9.RELEAS、elasticsearch-2.4.6(5.0+以上需要依赖JDK8)
-
-截止2018年1月22日，ElasticSearch目前最新的已到6.1.2，但是spring-boot的更新速度远远跟不上ElasticSearch更新的速度，目前spring-boot支持的最新版本是elasticsearch-2.4.6。
-
-## 安装说明
-- 使用本地ElasticSearch服务
-```
-spring.data.elasticsearch.cluster-name=elasticsearch
-#默认就是本机,如果要使用远程服务器，或者局域网服务器，那就需要在这里配置ip:prot;可以配置多个，以逗号分隔，相当于集群。
-#spring.data.elasticsearch.cluster-nodes=192.168.1.180:9300
-```
-- 使用远程ElasticSearch服务
-
-需要自行安装ElasticSearch，注意ElasticSearch版本尽量要与JAR包一致。
-
-下载地址：https://www.elastic.co/downloads/past-releases/elasticsearch-2-4-6
 
