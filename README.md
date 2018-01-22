@@ -115,7 +115,16 @@ spring.data.elasticsearch.cluster-name=elasticsearch
 
 - 新版本不建议使用root用户启动，需要自建ElasticSearch用户，也可以使用以下命令启动 elasticsearch -Des.insecure.allow.root=true -d 或者在elasticsearch中加入ES_JAVA_OPTS="-Des.insecure.allow.root=true"。
 
+## Java API
+Elasticsearch为Java用户提供了两种内置客户端：
 
+- 节点客户端(node client)：
+
+节点客户端，顾名思义，其本身也是Elasticsearch集群的一个组成部分。以无数据节点(none data node)身份加入集群，换言之，它自己不存储任何数据，但是它知道数据在集群中的具体位置，并且能够直接转发请求到对应的节点上。
+
+- 传输客户端(Transport client)：
+
+这个更轻量的传输客户端能够发送请求到远程集群。它自己不加入集群，只是简单转发请求给集群中的节点。两个Java客户端都通过9300端口与集群交互，使用Elasticsearch传输协议(Elasticsearch Transport Protocol)。集群中的节点之间也通过9300端口进行通信。如果此端口未开放，你的节点将不能组成集群。
 
 ## 全文检索
 
