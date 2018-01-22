@@ -135,7 +135,11 @@ Elasticsearch为Java用户提供了两种内置客户端：
 - for Elasticsearch 1.x: sudo elasticsearch/bin/plugin -install mobz/elasticsearch-head/1.x
 - for Elasticsearch 0.x: sudo elasticsearch/bin/plugin -install mobz/elasticsearch-head/0.9
 
+安装成功以后会在plugins目录下出现一个head目录，表明安装已经成功。
+
+
 浏览截图：
+
 ![Elasticsearch-Head](https://gitee.com/uploads/images/2018/0122/172610_74771172_87650.png "ES_head.png")
 
 ## 数据同步
