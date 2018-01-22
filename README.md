@@ -128,6 +128,14 @@ Elasticsearch为Java用户提供了两种内置客户端：
 
 ## 安装Elasticsearch-Head
 
+elasticsearch-head是一个界面化的集群操作和管理工具，可以对集群进行傻瓜式操作。你可以通过插件把它集成到es（首选方式）,也可以安装成一个独立webapp。
+
+es-head主要有三个方面的操作：
+
+- 显示集群的拓扑,并且能够执行索引和节点级别操作
+- 搜索接口能够查询集群中原始json或表格格式的检索数据
+- 能够快速访问并显示集群的状态
+
 插件安装方式、参考：https://github.com/mobz/elasticsearch-head
 
 - for Elasticsearch 5.x: site plugins are not supported. Run as a standalone server
