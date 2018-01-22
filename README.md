@@ -228,6 +228,7 @@ http://192.168.1.180:9200/_analyze?analyzer=standard&pretty=true&text=我爱你�
 }
 ```
 ##### 安装后：
+```
 http://121.42.155.213:9200/_analyze?analyzer=ik&pretty=true&text=我爱你中国
 {
   "tokens" : [ {
@@ -251,6 +252,7 @@ http://121.42.155.213:9200/_analyze?analyzer=ik&pretty=true&text=我爱你中国
   } ]
 }
 
+```
 ## 数据同步
 
 使用第三方工具类库elasticsearch-jdbc实现MySql到elasticsearch的同步。
