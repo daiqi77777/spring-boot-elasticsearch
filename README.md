@@ -189,7 +189,7 @@ index.analysis.analyzer.ik.type : “ik”
 ```
 
 
-##### 安装前：
+#### 安装前：
 
 ```
 http://192.168.1.180:9200/_analyze?analyzer=standard&pretty=true&text=我爱你中国
@@ -227,7 +227,7 @@ http://192.168.1.180:9200/_analyze?analyzer=standard&pretty=true&text=我爱你�
   } ]
 }
 ```
-##### 安装后：
+#### 安装后：
 ```
 http://121.42.155.213:9200/_analyze?analyzer=ik&pretty=true&text=我爱你中国
 {
