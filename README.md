@@ -126,6 +126,18 @@ Elasticsearch为Java用户提供了两种内置客户端：
 
 这个更轻量的传输客户端能够发送请求到远程集群。它自己不加入集群，只是简单转发请求给集群中的节点。两个Java客户端都通过9300端口与集群交互，使用Elasticsearch传输协议(Elasticsearch Transport Protocol)。集群中的节点之间也通过9300端口进行通信。如果此端口未开放，你的节点将不能组成集群。
 
+## 安装Elasticsearch-Head
+
+插件安装方式、参考：https://github.com/mobz/elasticsearch-head
+
+- for Elasticsearch 5.x: site plugins are not supported. Run as a standalone server
+- for Elasticsearch 2.x: sudo elasticsearch/bin/plugin install mobz/elasticsearch-head
+- for Elasticsearch 1.x: sudo elasticsearch/bin/plugin -install mobz/elasticsearch-head/1.x
+- for Elasticsearch 0.x: sudo elasticsearch/bin/plugin -install mobz/elasticsearch-head/0.9
+
+浏览截图：
+![Elasticsearch-Head](https://gitee.com/uploads/images/2018/0122/172610_74771172_87650.png "ES_head.png")
+
 ## 数据同步
 
 使用第三方工具类库elasticsearch-jdbc实现MySql到elasticsearch的同步。
