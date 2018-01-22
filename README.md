@@ -126,9 +126,55 @@ Elasticsearch为Java用户提供了两种内置客户端：
 
 这个更轻量的传输客户端能够发送请求到远程集群。它自己不加入集群，只是简单转发请求给集群中的节点。两个Java客户端都通过9300端口与集群交互，使用Elasticsearch传输协议(Elasticsearch Transport Protocol)。集群中的节点之间也通过9300端口进行通信。如果此端口未开放，你的节点将不能组成集群。
 
-## 全文检索
+## 数据同步
 
-### 简介
+使用第三方工具类库elasticsearch-jdbc实现MySql到elasticsearch的同步。
+
+![同步架构图](https://gitee.com/uploads/images/2018/0122/165124_85362805_87650.png "elasticsearch-jdbc.png")
+
+#### 依赖环境：JDK8
+#### 安装步骤：
+第一步：下载(可能很卡、请耐心等待) wget http://xbib.org/repository/org/xbib/elasticsearch/importer/elasticsearch-jdbc/2.3.2.0/elasticsearch-jdbc-2.3.2.0-dist.zip 
+第二步：解压 unzip elasticsearch-jdbc-2.3.2.0-dist.zip 
+第三步：配置脚本mysql_import_es.sh
+```
+#!/bin/sh
+# elasticsearch-jdbc 安装路径
+bin=/home/elasticsearch-jdbc-2.3.2.0/bin
+lib=/home/elasticsearch-jdbc-2.3.2.0/lib
+echo '{
+    "type" : "jdbc",
+    "jdbc": {
+        # 如果数据库中存在Json文件 这里设置成false，否则会同步出错
+        "detect_json":false,
+        "url":"jdbc:mysql://127.0.0.1:3306/itstyle_log??useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true",
+        "user":"root",
+        "password":"root",
+        # 如果想自动生成_id,去掉第一个获取字段即可；如果想Id作为主键，把id设置为_id即可
+        "sql":"SELECT id AS _id,id,user_id AS userId ,username,operation,time,method,params,ip,device_type AS deviceType,log_type AS logType,exception_detail AS exceptionDetail,
+gmt_create AS gmtCreate,plat_from AS platFrom FROM sys_log",
+        "elasticsearch" : {
+             "host" : "127.0.0.1",#elasticsearch服务地址
+             "port" : "9300" #远程elasticsearch服务 此端口一定要开放
+        },
+        "index" : "elasticsearch",# 索引名相当于库
+        "type" : "sysLog" # 类型名相当于表
+    }
+}' | java \
+       -cp "${lib}/*" \
+       -Dlog4j.configurationFile=${bin}/log4j2.xml \
+       org.xbib.tools.Runner \
+       org.xbib.tools.JDBCImporter
+
+```
+第四部：授权并执行
+```
+chmod +x mysql_import_es.sh
+./mysql_import_es.sh
+```
+
+
+## 补充说明
 
 Elasticsearch （ES）是一个基于 Lucene 的开源搜索引擎，它不但稳定、可靠、快速，而且也具有良好的水平扩展能力，是专门为分布式环境设计的。
 
