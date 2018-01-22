@@ -44,7 +44,9 @@
 			<artifactId>zkclient</artifactId>
 			<version>0.6</version>
 		</dependency>
-		<!-- dubbox 分布式远程调用 -->
+		<!-- 这里使用最新的2.8.4版本，中央仓库不存在，请自行打入本地仓库 -->
+		<!-- 百度网盘：http://pan.baidu.com/s/1gfxiuYZ -->
+	    <!-- 或者使用最新版本 http://mvnrepository.com/artifact/com.alibaba/dubbo-->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>
