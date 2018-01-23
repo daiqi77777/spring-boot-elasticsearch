@@ -85,9 +85,23 @@ JDK1.7、Maven、Eclipse、SpringBoot1.5.9、elasticsearch2.4.6、Dubbox2.8.4、
 ```
 ## 项目截图
 
-![搜索查询](https://gitee.com/uploads/images/2018/0122/160851_95e54741_87650.png "ES_index.png")
+![搜索页面](https://gitee.com/uploads/images/2018/0123/155849_f7e4fcaa_87650.png "ES_index.png")
 
 #### 演示网址：http://es.52itstyle.com
+
+#### 分页查询
+
+使用ElasticsearchTemplate模板插入了20万条数据，本地向外网服务器(1核1G)，用时60s+，一分钟左右的时间。虽然索引库容量有增加，但是等了大约
+10分钟左右的时间才能搜索出来。
+
+分页查询到10000+的时候系统报错，Result window is too large，修改config下的elasticsearch.yml 追加以下代码即可：
+
+```
+# 自行定义数量
+index.max_result_window : '10000000'
+```
+
+参考：https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html
 
 ## 版本介绍
 
@@ -303,6 +317,89 @@ chmod +x mysql_import_es.sh
 ./mysql_import_es.sh
 ```
 
+## ElasticSearchRepository和ElasticSearchTemplate
+
+Spring-data-elasticsearch是Spring提供的操作ElasticSearch的数据层，封装了大量的基础操作，通过它可以很方便的操作ElasticSearch的数据。
+
+#### ElasticSearchRepository的基本使用
+```
+/**
+ * @param <T>
+ * @param <ID>
+ * @author Rizwan Idrees
+ * @author Mohsin Husen
+ */
+@NoRepositoryBean
+public interface ElasticsearchRepository<T, ID extends Serializable> extends ElasticsearchCrudRepository<T, ID> {
+
+	<S extends T> S index(S entity);
+
+	Iterable<T> search(QueryBuilder query);
+
+	Page<T> search(QueryBuilder query, Pageable pageable);
+
+	Page<T> search(SearchQuery searchQuery);
+
+	Page<T> searchSimilar(T entity, String[] fields, Pageable pageable);
+
+	void refresh();
+
+	Class<T> getEntityClass();
+}
+```
+
+ElasticsearchRepository里面有几个特殊的search方法，这些是ES特有的，和普通的JPA区别的地方，用来构建一些ES查询的。
+主要是看QueryBuilder和SearchQuery两个参数，要完成一些特殊查询就主要看构建这两个参数。
+
+![输入图片说明](https://gitee.com/uploads/images/2018/0123/100212_f3016182_87650.png "1.png")
+
+一般情况下，我们不是直接是new NativeSearchQuery，而是使用NativeSearchQueryBuilder。
+通过NativeSearchQueryBuilder.withQuery(QueryBuilder1).withFilter(QueryBuilder2).withSort(SortBuilder1).withXXXX().build();这样的方式来完成NativeSearchQuery的构建。
+
+![输入图片说明](https://gitee.com/uploads/images/2018/0123/100222_2a91d74b_87650.png "2.png")
+![输入图片说明](https://gitee.com/uploads/images/2018/0123/100231_be831448_87650.png "3.png")
+
+#### ElasticSearchTemplate的使用
+
+ElasticSearchTemplate更多是对ESRepository的补充，里面提供了一些更底层的方法。
+
+这里我们主要实现快读批量插入的功能，插入20万条数据，本地向外网服务器(1核1G)，用时60s+，一分钟左右的时间。虽然索引库容量有增加，但是等了大约10分钟左右的时间才能搜索出来。
+
+```
+//批量同步或者插入数据
+public void bulkIndex(List<SysLogs> logList) {  
+	long start = System.currentTimeMillis();
+    int counter = 0;  
+    try {  
+        List<IndexQuery> queries = new ArrayList<>();  
+        for (SysLogs log : logList) {  
+            IndexQuery indexQuery = new IndexQuery();  
+            indexQuery.setId(log.getId()+ "");  
+            indexQuery.setObject(log);  
+            indexQuery.setIndexName("elasticsearch");  
+            indexQuery.setType("sysLog");  
+            //也可以使用IndexQueryBuilder来构建  
+            //IndexQuery index = new IndexQueryBuilder().withId(person.getId() + "").withObject(person).build();  
+            queries.add(indexQuery);  
+            if (counter % 1000 == 0) {  
+            	elasticSearchTemplate.bulkIndex(queries);  
+                queries.clear();  
+                System.out.println("bulkIndex counter : " + counter);  
+            }  
+            counter++;  
+        }  
+        if (queries.size() > 0) {  
+        	elasticSearchTemplate.bulkIndex(queries);  
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("bulkIndex completed use time:"+ (end-start));  
+        
+    } catch (Exception e) {  
+        System.out.println("IndexerService.bulkIndex e;" + e.getMessage());  
+        throw e;  
+    }  
+} 
+```
 
 ## 补充说明
 
