@@ -85,9 +85,23 @@ JDK1.7、Maven、Eclipse、SpringBoot1.5.9、elasticsearch2.4.6、Dubbox2.8.4、
 ```
 ## 项目截图
 
-![搜索查询](https://gitee.com/uploads/images/2018/0122/160851_95e54741_87650.png "ES_index.png")
+![搜索页面](https://gitee.com/uploads/images/2018/0123/155849_f7e4fcaa_87650.png "ES_index.png")
 
 #### 演示网址：http://es.52itstyle.com
+
+#### 分页查询
+
+使用ElasticsearchTemplate模板插入了20万条数据，本地项外网服务器(1核1G)，用时60s+，一分钟左右的时间。虽然索引库容量有增加，但是等了大约
+10分钟左右的时间才能搜索出来。
+
+分页查询到10000+的时候系统报错，Result window is too large，修改config下的elasticsearch.yml 追加以下代码即可：
+
+```
+# 自行定义数量
+index.max_result_window : '10000000'
+```
+
+参考：https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html
 
 ## 版本介绍
 
