@@ -345,6 +345,12 @@ ElasticsearchRepository里面有几个特殊的search方法，这些是ES特有�
 ![输入图片说明](https://gitee.com/uploads/images/2018/0123/100222_2a91d74b_87650.png "2.png")
 ![输入图片说明](https://gitee.com/uploads/images/2018/0123/100231_be831448_87650.png "3.png")
 
+#### ElasticSearchTemplate的使用
+
+ElasticSearchTemplate更多是对ESRepository的补充，里面提供了一些更底层的方法。
+
+这里我们主要实现快读批量插入的功能。
+
 ## 补充说明
 
 Elasticsearch （ES）是一个基于 Lucene 的开源搜索引擎，它不但稳定、可靠、快速，而且也具有良好的水平扩展能力，是专门为分布式环境设计的。
