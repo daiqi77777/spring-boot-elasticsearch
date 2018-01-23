@@ -109,11 +109,13 @@ spring.data.elasticsearch.cluster-name=elasticsearch
 
 
 ```
-## 项目截图
-
-![搜索页面](https://gitee.com/uploads/images/2018/0123/155849_f7e4fcaa_87650.png "ES_index.png")
+## 项目演示
 
 #### 演示网址：http://es.52itstyle.com
+
+#### 项目截图
+
+![搜索页面](https://gitee.com/uploads/images/2018/0123/155849_f7e4fcaa_87650.png "ES_index.png")
 
 #### 分页查询
 
