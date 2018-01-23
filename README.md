@@ -1,3 +1,7 @@
+## 日志处理
+
+其实做这个Demo的目的是如何基于Elasticsearch构建网站日志处理系统，通过数据同步工具等一些列开源组件来快速构建一个日志处理系统，项目雏形初步成型中。
+
 ## 开发环境
 
 JDK1.7、Maven、Eclipse、SpringBoot1.5.9、elasticsearch2.4.6、Dubbox2.8.4、zookeeper3.4.6、Vue、Iview
