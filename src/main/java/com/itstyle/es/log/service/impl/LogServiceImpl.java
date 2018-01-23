@@ -85,7 +85,9 @@ public class LogServiceImpl implements LogService {
 			模糊匹配 与like 等价。
          */
         //字段精确匹配
-        builder.must(QueryBuilders.termQuery("platFrom", platFrom));
+        if(platFrom!=null){
+        	builder.must(QueryBuilders.termQuery("platFrom", platFrom));
+        }
         //设置多字段组合模糊搜索
         if(StringUtils.isNotBlank(searchContent)){
         	builder.must(QueryBuilders.multiMatchQuery(searchContent,"username","operation","exceptionDetail"));
