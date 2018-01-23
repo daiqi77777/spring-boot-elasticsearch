@@ -91,7 +91,7 @@ JDK1.7、Maven、Eclipse、SpringBoot1.5.9、elasticsearch2.4.6、Dubbox2.8.4、
 
 #### 分页查询
 
-使用ElasticsearchTemplate模板插入了20万条数据，本地项外网服务器(1核1G)，用时60s+，一分钟左右的时间。虽然索引库容量有增加，但是等了大约
+使用ElasticsearchTemplate模板插入了20万条数据，本地向外网服务器(1核1G)，用时60s+，一分钟左右的时间。虽然索引库容量有增加，但是等了大约
 10分钟左右的时间才能搜索出来。
 
 分页查询到10000+的时候系统报错，Result window is too large，修改config下的elasticsearch.yml 追加以下代码即可：
@@ -363,7 +363,43 @@ ElasticsearchRepository里面有几个特殊的search方法，这些是ES特有�
 
 ElasticSearchTemplate更多是对ESRepository的补充，里面提供了一些更底层的方法。
 
-这里我们主要实现快读批量插入的功能。
+这里我们主要实现快读批量插入的功能，插入20万条数据，本地向外网服务器(1核1G)，用时60s+，一分钟左右的时间。虽然索引库容量有增加，但是等了大约10分钟左右的时间才能搜索出来。
+
+```
+//批量同步或者插入数据
+public void bulkIndex(List<SysLogs> logList) {  
+	long start = System.currentTimeMillis();
+    int counter = 0;  
+    try {  
+        List<IndexQuery> queries = new ArrayList<>();  
+        for (SysLogs log : logList) {  
+            IndexQuery indexQuery = new IndexQuery();  
+            indexQuery.setId(log.getId()+ "");  
+            indexQuery.setObject(log);  
+            indexQuery.setIndexName("elasticsearch");  
+            indexQuery.setType("sysLog");  
+            //也可以使用IndexQueryBuilder来构建  
+            //IndexQuery index = new IndexQueryBuilder().withId(person.getId() + "").withObject(person).build();  
+            queries.add(indexQuery);  
+            if (counter % 1000 == 0) {  
+            	elasticSearchTemplate.bulkIndex(queries);  
+                queries.clear();  
+                System.out.println("bulkIndex counter : " + counter);  
+            }  
+            counter++;  
+        }  
+        if (queries.size() > 0) {  
+        	elasticSearchTemplate.bulkIndex(queries);  
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("bulkIndex completed use time:"+ (end-start));  
+        
+    } catch (Exception e) {  
+        System.out.println("IndexerService.bulkIndex e;" + e.getMessage());  
+        throw e;  
+    }  
+} 
+```
 
 ## 补充说明
 
