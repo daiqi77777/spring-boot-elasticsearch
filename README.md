@@ -166,6 +166,19 @@ es-head主要有三个方面的操作：
 
 ## x-pack监控
 
+Elasticsearch、Logstash 随着 Kibana 的命名升级直接从2.4跳跃到了5.0，5.x版本的 ELK 在版本对应上要求相对较高，不再支持5.x和2.x的混搭，同时 Elastic 做了一个 package ，对原本的 marvel、watch、alert 做了一个封装，形成了 x-pack 。
+
+安装：https://www.elastic.co/guide/en/elasticsearch/reference/6.1/installing-xpack-es.html
+
+#### 用户管理
+x-pack安装之后有一个超级用户elastic ，其默认的密码是changeme，拥有对所有索引和数据的控制权，可以使用该用户创建和修改其他用户，当然这里可以通过kibana的web界面进行用户和用户组的管理。
+
+修改elastic用户的密码：
+```
+curl -XPUT -u elastic 'localhost:9200/_xpack/security/user/elastic/_password' -d '{
+  "password" : "123456"
+}'
+```
 
 
 ## IK Analysis for Elasticsearch
