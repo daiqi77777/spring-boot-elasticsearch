@@ -2,6 +2,32 @@
 
 JDK1.7、Maven、Eclipse、SpringBoot1.5.9、elasticsearch2.4.6、Dubbox2.8.4、zookeeper3.4.6、Vue、Iview
 
+#### 版本介绍
+
+spring-boot-starter-parent-1.5.9.RELEASE、spring-data-elasticsearch-2.1.9.RELEAS、elasticsearch-2.4.6(5.0+以上需要依赖JDK8)
+
+截止2018年1月22日，ElasticSearch目前最新的已到6.1.2，但是spring-boot的更新速度远远跟不上ElasticSearch更新的速度，目前spring-boot支持的最新版本是elasticsearch-2.4.6。
+
+#### 服务说明
+
+##### 使用本地ElasticSearch服务(application-dev.properties)
+```
+spring.data.elasticsearch.cluster-name=elasticsearch
+#默认就是本机,如果要使用远程服务器，或者局域网服务器，那就需要在这里配置ip:prot;可以配置多个，以逗号分隔，相当于集群。
+#Java客户端：通过9300端口与集群进行交互
+#其他所有程序语言：都可以使用RESTful API，通过9200端口的与Elasticsearch进行通信。
+#spring.data.elasticsearch.cluster-nodes=192.168.1.180:9300
+```
+##### 使用远程ElasticSearch服务(application-dev.properties)
+
+- 需要自行安装ElasticSearch，注意ElasticSearch版本尽量要与JAR包一致。
+ 
+- 下载地址：https://www.elastic.co/downloads/past-releases/elasticsearch-2-4-6
+
+- 安装说明：http://www.52itstyle.com/thread-20114-1-1.html 
+
+- 新版本不建议使用root用户启动，需要自建ElasticSearch用户，也可以使用以下命令启动 elasticsearch -Des.insecure.allow.root=true -d 或者在elasticsearch中加入ES_JAVA_OPTS="-Des.insecure.allow.root=true"。
+
 ## 项目结构
 
 ```
@@ -103,31 +129,7 @@ index.max_result_window : '10000000'
 
 参考：https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html
 
-## 版本介绍
 
-spring-boot-starter-parent-1.5.9.RELEASE、spring-data-elasticsearch-2.1.9.RELEAS、elasticsearch-2.4.6(5.0+以上需要依赖JDK8)
-
-截止2018年1月22日，ElasticSearch目前最新的已到6.1.2，但是spring-boot的更新速度远远跟不上ElasticSearch更新的速度，目前spring-boot支持的最新版本是elasticsearch-2.4.6。
-
-## 服务说明
-
-#### 使用本地ElasticSearch服务(application-dev.properties)
-```
-spring.data.elasticsearch.cluster-name=elasticsearch
-#默认就是本机,如果要使用远程服务器，或者局域网服务器，那就需要在这里配置ip:prot;可以配置多个，以逗号分隔，相当于集群。
-#Java客户端：通过9300端口与集群进行交互
-#其他所有程序语言：都可以使用RESTful API，通过9200端口的与Elasticsearch进行通信。
-#spring.data.elasticsearch.cluster-nodes=192.168.1.180:9300
-```
-#### 使用远程ElasticSearch服务(application-dev.properties)
-
-- 需要自行安装ElasticSearch，注意ElasticSearch版本尽量要与JAR包一致。
- 
-- 下载地址：https://www.elastic.co/downloads/past-releases/elasticsearch-2-4-6
-
-- 安装说明：http://www.52itstyle.com/thread-20114-1-1.html 
-
-- 新版本不建议使用root用户启动，需要自建ElasticSearch用户，也可以使用以下命令启动 elasticsearch -Des.insecure.allow.root=true -d 或者在elasticsearch中加入ES_JAVA_OPTS="-Des.insecure.allow.root=true"。
 
 ## Java API
 Elasticsearch为Java用户提供了两种内置客户端：
