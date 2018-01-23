@@ -2,6 +2,10 @@
 
 其实做这个Demo的目的是如何基于Elasticsearch构建网站日志处理系统，通过数据同步工具等一些列开源组件来快速构建一个日志处理系统，项目雏形初步成型中。
 
+当然，项目功能会逐步增加，实现一个365°全方位的Demo案例。
+
+![输入图片说明](https://gitee.com/uploads/images/2018/0123/191151_75e6fc27_87650.png "23456.png")
+
 ## 开发环境
 
 JDK1.7、Maven、Eclipse、SpringBoot1.5.9、elasticsearch2.4.6、Dubbox2.8.4、zookeeper3.4.6、Vue、Iview
