@@ -43,7 +43,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
  
  * boolean includeInParent() default false;
  */
-@Document(indexName="elasticsearch",type="sysLog",indexStoreType="fs",shards=5,replicas=1,refreshInterval="3")
+@Document(indexName="elasticsearch",type="sysLog",indexStoreType="fs",shards=5,replicas=1,refreshInterval="-1")
 public class SysLogs implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

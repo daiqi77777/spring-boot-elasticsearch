@@ -79,7 +79,7 @@ public class Logs {
                 //也可以使用IndexQueryBuilder来构建  
                 //IndexQuery index = new IndexQueryBuilder().withId(person.getId() + "").withObject(person).build();  
                 queries.add(indexQuery);  
-                if (counter % 500 == 0) {  
+                if (counter % 1000 == 0) {  
                 	elasticSearchTemplate.bulkIndex(queries);  
                     queries.clear();  
                     System.out.println("bulkIndex counter : " + counter);  

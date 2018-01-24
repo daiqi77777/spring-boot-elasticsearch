@@ -49,11 +49,11 @@ public class LogServiceImpl implements LogService {
 
         logger.info("searchLogPage: searchContent [{}] \n DSL  = \n {}",searchContent,searchQuery.getQuery().toString());
 
-        Page<SysLogs> cityPage = elasticLogRepository.search(searchQuery);
+        Page<SysLogs> logPage = elasticLogRepository.search(searchQuery);
         Pages<SysLogs> pages = new Pages<SysLogs>();
-        pages.setRows(cityPage.getContent());
-        pages.setTotal((int)cityPage.getTotalElements());
-        pages.setTotalPages(cityPage.getTotalPages());
+        pages.setRows(logPage.getContent());
+        pages.setTotal((int)logPage.getTotalElements());
+        pages.setTotalPages(logPage.getTotalPages());
         return pages;
 	}
 	
