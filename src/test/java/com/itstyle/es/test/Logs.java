@@ -25,15 +25,15 @@ public class Logs {
 	public void  send(){
 		System.out.println("组织数据开始");
 		List<SysLogs> logList = new ArrayList<SysLogs>();
-		for(long i=40000;i<100000;i++){
+		for(long i=374000;i<400000;i++){
 			SysLogs log = new SysLogs();
-			log.setUsername("科帮网论坛");
-			log.setOperation("我爱你锤子");
+			log.setUsername("码云");
+			log.setOperation("开源中国社区");
 			log.setMethod("com.itstyle.es.log.controller.index()");
-			log.setIp("192.168.1.68");
+			log.setIp("192.168.1.70");
 			log.setGmtCreate(new Timestamp(new Date().getTime()));
-			log.setExceptionDetail("我的能力不足以支撑我的生活。据说人最痛苦的事情之一就是实力不足以支撑其野心。");
-			log.setParams("{'name':'罗永浩','type':'锤子'}");
+			log.setExceptionDetail("开源中国社区");
+			log.setParams("{'name':'码云','type':'开源'}");
 			log.setDeviceType((short)1);
 			log.setPlatFrom((short)1);
 			log.setLogType((short)1);
@@ -43,15 +43,15 @@ public class Logs {
 			log.setTime(i);
 			logList.add(log);
 		}
-		for(long i=100000;i<=200000;i++){
+		for(long i=400000;i<=500000;i++){
 			SysLogs log = new SysLogs();
-			log.setUsername("小柒博客");
-			log.setOperation("生产锤子手机");
+			log.setUsername("马云");
+			log.setOperation("阿里巴巴智能汽车");
 			log.setMethod("com.itstyle.es.log.controller.save()");
-			log.setIp("192.168.1.69");
+			log.setIp("192.168.1.80");
 			log.setGmtCreate(new Timestamp(new Date().getTime()));
-			log.setExceptionDetail("不存在所谓的坚持，做任何事总是有动机并且需要有正向结果驱动的。");
-			log.setParams("{'name':'罗永浩','type':'雷神'}");
+			log.setExceptionDetail("今天会很残酷，明天会更残酷，后天会很美好，但大部分人会死在明天晚上。");
+			log.setParams("{'name':'马云','type':'淘宝'}");
 			log.setLogType((short)2);
 			log.setDeviceType((short)2);
 			log.setPlatFrom((short)2);
@@ -79,7 +79,7 @@ public class Logs {
                 //也可以使用IndexQueryBuilder来构建  
                 //IndexQuery index = new IndexQueryBuilder().withId(person.getId() + "").withObject(person).build();  
                 queries.add(indexQuery);  
-                if (counter % 1000 == 0) {  
+                if (counter % 500 == 0) {  
                 	elasticSearchTemplate.bulkIndex(queries);  
                     queries.clear();  
                     System.out.println("bulkIndex counter : " + counter);  
