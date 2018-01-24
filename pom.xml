@@ -5,7 +5,7 @@
   <artifactId>spring-boot-elasticsearch</artifactId>
   <packaging>jar</packaging>
   <version>0.0.1-SNAPSHOT</version>
-  <name>acts_elasticSearch</name>
+  <name>spring-boot-elasticsearch</name>
   <url>http://maven.apache.org</url>
   
     <properties>
@@ -80,14 +80,14 @@
 		
 	</dependencies>
   <build>
-    <finalName>acts_elasticSearch</finalName>
+    <finalName>spring-boot-elasticsearch</finalName>
     <plugins>
 			<!-- 打包项目 mvn clean package -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-                    <maimClass>com.acts.elasticsearch.Application</maimClass>
+                    <maimClass>com.itstyle.es.Application</maimClass>
                 </configuration>
                 <executions>
                     <execution>
