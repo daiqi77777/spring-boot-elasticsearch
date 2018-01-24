@@ -11,7 +11,7 @@
 
 ## 开发环境
 
-JDK1.7、Maven、Eclipse、SpringBoot1.5.9、elasticsearch2.4.6、Dubbox2.8.4、zookeeper3.4.6、Vue、Iview
+JDK1.7、Maven、Eclipse、SpringBoot1.5.9、elasticsearch2.4.6、Dubbox2.8.4、zookeeper3.4.6、Redis、Vue、Iview
 
 #### 版本介绍
 
@@ -431,6 +431,89 @@ public void bulkIndex(List<SysLogs> logList) {
     }  
 } 
 ```
+
+## Redis日志队列
+
+见包：com.itstyle.es.log.queue
+
+监听配置 RedisListener：
+```
+@Component
+public class RedisListener {
+    private static final Logger LOGGER = LoggerFactory.getLogger(RedisListener.class);
+	@Bean
+	RedisMessageListenerContainer container(
+			RedisConnectionFactory connectionFactory,
+			MessageListenerAdapter listenerAdapter) {
+		LOGGER.info("启动监听"); 
+		RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+		container.setConnectionFactory(connectionFactory);
+		container.addMessageListener(listenerAdapter, new PatternTopic("itstyle_log"));
+		return container;
+	}
+
+	@Bean
+	MessageListenerAdapter listenerAdapter(Receiver receiver) {
+		return new MessageListenerAdapter(receiver, "receiveMessage");
+	}
+
+	@Bean
+	Receiver receiver(CountDownLatch latch) {
+		return new Receiver(latch);
+	}
+
+	@Bean
+	CountDownLatch latch() {
+		return new CountDownLatch(1);
+	}
+
+	@Bean
+	StringRedisTemplate template(RedisConnectionFactory connectionFactory) {
+		return new StringRedisTemplate(connectionFactory);
+	}
+}
+```
+
+日志接收Receiver：
+```
+public class Receiver {
+    private static final Logger LOGGER = LoggerFactory.getLogger(Receiver.class);
+    @Autowired
+	private  ElasticLogRepository elasticLogRepository;
+    private CountDownLatch latch;
+
+    @Autowired
+    public Receiver(CountDownLatch latch) {
+        this.latch = latch;
+    }
+
+    public void receiveMessage(String message) {
+        LOGGER.info("接收log消息 <{}>",message);
+        if(message == null){
+            LOGGER.info("接收log消息 <" + null + ">");
+        }else {
+        	ObjectMapper mapper = new ObjectMapper();  
+			try {
+				SysLogs log = mapper.readValue(message, SysLogs.class);
+				elasticLogRepository.save(log);
+				LOGGER.info("接收log消息内容 <{}>",log.getOperation());
+			} catch (JsonParseException e) {
+				e.printStackTrace();
+			} catch (JsonMappingException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+        }
+        latch.countDown();
+    }
+}
+```
+
+测试 LogController：http://lip:port/log
+
 
 ## 简介
 
