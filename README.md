@@ -1,6 +1,43 @@
+## 日志处理
+
+
+其实做这个Demo的目的是如何基于Elasticsearch构建网站日志处理系统，通过数据同步工具等一些列开源组件来快速构建一个日志处理系统，项目雏形初步成型中。
+
+演示网址：http://es.52itstyle.com
+
+当然，项目功能会逐步增加，实现一个365°全方位的Demo案例。
+
+![输入图片说明](https://gitee.com/uploads/images/2018/0123/191151_75e6fc27_87650.png "23456.png")
+
 ## 开发环境
 
 JDK1.7、Maven、Eclipse、SpringBoot1.5.9、elasticsearch2.4.6、Dubbox2.8.4、zookeeper3.4.6、Vue、Iview
+
+#### 版本介绍
+
+spring-boot-starter-parent-1.5.9.RELEASE、spring-data-elasticsearch-2.1.9.RELEAS、elasticsearch-2.4.6(5.0+以上需要依赖JDK8)
+
+截止2018年1月22日，ElasticSearch目前最新的已到6.1.2，但是spring-boot的更新速度远远跟不上ElasticSearch更新的速度，目前spring-boot支持的最新版本是elasticsearch-2.4.6。
+
+#### 服务说明
+
+##### 使用本地ElasticSearch服务(application-dev.properties)
+```
+spring.data.elasticsearch.cluster-name=elasticsearch
+#默认就是本机,如果要使用远程服务器，或者局域网服务器，那就需要在这里配置ip:prot;可以配置多个，以逗号分隔，相当于集群。
+#Java客户端：通过9300端口与集群进行交互
+#其他所有程序语言：都可以使用RESTful API，通过9200端口的与Elasticsearch进行通信。
+#spring.data.elasticsearch.cluster-nodes=192.168.1.180:9300
+```
+##### 使用远程ElasticSearch服务(application-dev.properties)
+
+- 需要自行安装ElasticSearch，注意ElasticSearch版本尽量要与JAR包一致。
+ 
+- 下载地址：https://www.elastic.co/downloads/past-releases/elasticsearch-2-4-6
+
+- 安装说明：http://www.52itstyle.com/thread-20114-1-1.html 
+
+- 新版本不建议使用root用户启动，需要自建ElasticSearch用户，也可以使用以下命令启动 elasticsearch -Des.insecure.allow.root=true -d 或者在elasticsearch中加入ES_JAVA_OPTS="-Des.insecure.allow.root=true"。
 
 ## 项目结构
 
@@ -83,11 +120,13 @@ JDK1.7、Maven、Eclipse、SpringBoot1.5.9、elasticsearch2.4.6、Dubbox2.8.4、
 
 
 ```
-## 项目截图
-
-![搜索页面](https://gitee.com/uploads/images/2018/0123/155849_f7e4fcaa_87650.png "ES_index.png")
+## 项目演示
 
 #### 演示网址：http://es.52itstyle.com
+
+#### 项目截图
+
+![搜索页面](https://gitee.com/uploads/images/2018/0123/155849_f7e4fcaa_87650.png "ES_index.png")
 
 #### 分页查询
 
@@ -103,31 +142,7 @@ index.max_result_window : '10000000'
 
 参考：https://www.elastic.co/guide/en/elasticsearch/reference/current/index-modules.html
 
-## 版本介绍
 
-spring-boot-starter-parent-1.5.9.RELEASE、spring-data-elasticsearch-2.1.9.RELEAS、elasticsearch-2.4.6(5.0+以上需要依赖JDK8)
-
-截止2018年1月22日，ElasticSearch目前最新的已到6.1.2，但是spring-boot的更新速度远远跟不上ElasticSearch更新的速度，目前spring-boot支持的最新版本是elasticsearch-2.4.6。
-
-## 服务说明
-
-#### 使用本地ElasticSearch服务(application-dev.properties)
-```
-spring.data.elasticsearch.cluster-name=elasticsearch
-#默认就是本机,如果要使用远程服务器，或者局域网服务器，那就需要在这里配置ip:prot;可以配置多个，以逗号分隔，相当于集群。
-#Java客户端：通过9300端口与集群进行交互
-#其他所有程序语言：都可以使用RESTful API，通过9200端口的与Elasticsearch进行通信。
-#spring.data.elasticsearch.cluster-nodes=192.168.1.180:9300
-```
-#### 使用远程ElasticSearch服务(application-dev.properties)
-
-- 需要自行安装ElasticSearch，注意ElasticSearch版本尽量要与JAR包一致。
- 
-- 下载地址：https://www.elastic.co/downloads/past-releases/elasticsearch-2-4-6
-
-- 安装说明：http://www.52itstyle.com/thread-20114-1-1.html 
-
-- 新版本不建议使用root用户启动，需要自建ElasticSearch用户，也可以使用以下命令启动 elasticsearch -Des.insecure.allow.root=true -d 或者在elasticsearch中加入ES_JAVA_OPTS="-Des.insecure.allow.root=true"。
 
 ## Java API
 Elasticsearch为Java用户提供了两种内置客户端：
@@ -163,6 +178,22 @@ es-head主要有三个方面的操作：
 浏览截图：
 
 ![Elasticsearch-Head](https://gitee.com/uploads/images/2018/0122/172610_74771172_87650.png "ES_head.png")
+
+## x-pack监控
+
+Elasticsearch、Logstash 随着 Kibana 的命名升级直接从2.4跳跃到了5.0，5.x版本的 ELK 在版本对应上要求相对较高，不再支持5.x和2.x的混搭，同时 Elastic 做了一个 package ，对原本的 marvel、watch、alert 做了一个封装，形成了 x-pack 。
+
+安装：https://www.elastic.co/guide/en/elasticsearch/reference/6.1/installing-xpack-es.html
+
+#### 用户管理
+x-pack安装之后有一个超级用户elastic ，其默认的密码是changeme，拥有对所有索引和数据的控制权，可以使用该用户创建和修改其他用户，当然这里可以通过kibana的web界面进行用户和用户组的管理。
+
+修改elastic用户的密码：
+```
+curl -XPUT -u elastic 'localhost:9200/_xpack/security/user/elastic/_password' -d '{
+  "password" : "123456"
+}'
+```
 
 
 ## IK Analysis for Elasticsearch
@@ -401,7 +432,7 @@ public void bulkIndex(List<SysLogs> logList) {
 } 
 ```
 
-## 补充说明
+## 简介
 
 Elasticsearch （ES）是一个基于 Lucene 的开源搜索引擎，它不但稳定、可靠、快速，而且也具有良好的水平扩展能力，是专门为分布式环境设计的。
 
@@ -439,3 +470,7 @@ ES 是一个分布式系统，我们一开始就应该以集群的方式来使�
 
 v 是 verbose 的意思，这样可以更可读（有表头，有对齐），_cat 是监测相关的 APIs，/_cat?help 来获取所有接口。${index} 和 ${type} 分别是具体的某一索引某一类型，是分层次的。我们也可以直接在所有索引所有类型上进行搜索：/_search。
 
+
+作者： 小柒2012
+
+欢迎关注： https://blog.52itstyle.com
