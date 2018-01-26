@@ -5,7 +5,6 @@ import java.util.concurrent.CountDownLatch;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.listener.PatternTopic;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Component;
  * 创建时间	2018年1月24日
  *
  */
-@Order(1)
 @Component
 public class RedisListener {
     private static final Logger LOGGER = LoggerFactory.getLogger(RedisListener.class);
