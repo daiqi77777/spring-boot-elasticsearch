@@ -97,6 +97,32 @@
                     </execution>
                 </executions>
 			</plugin>
+			<!-- ES服务接口 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+				<executions>
+					<execution>
+					    <id>service</id>  
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<classesDirectory>${project.build.directory}/classes</classesDirectory>
+							<finalName>spring-boot-es</finalName>
+							<outputDirectory>${project.build.directory}</outputDirectory>
+							<includes>
+								<include>com/itstyle/es/log/service/*.*</include>
+								<include>com/itstyle/es/log/entity/*.*</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>  
+		   </plugin>
 			<!-- 跳过测试类 -->
 		    <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
