@@ -77,4 +77,33 @@ public class Citys {
 			e.printStackTrace();
 		}
 	}
+	public void  createArea(){
+		XContentBuilder mapping = null;
+		try {
+			mapping = jsonBuilder()
+			.startObject()
+			.startObject("_ttl")
+				.field("enabled",false)
+				.endObject()
+					.startObject("properties")
+					.startObject("id")
+							.field("type","int")
+					.endObject()
+					.startObject("name")
+						.field("pid","int")
+					.endObject()
+					.startObject("location")
+						.field("type","geo_point")
+					.endObject()
+					.startObject("introduction")
+						.field("type","string")
+					.endObject()
+				.endObject()
+			.endObject();
+			PutMappingRequest request = Requests.putMappingRequest("elasticsearch").type("city").source(mapping);
+			eslasticsearchOperations.getClient().admin().indices().putMapping(request).actionGet();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
