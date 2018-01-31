@@ -3,7 +3,7 @@ package com.itstyle.es.area.entity;
  * 区域数据
  */
 public class Area {
-	private Integer id; 
+	private Long id; 
 	private Integer pid;//父id
 	private String  shortname;//简称
 	private String  name;//名称
@@ -19,7 +19,7 @@ public class Area {
 		super();
 	}
 
-	public Area(Integer id, Integer pid, String shortname, String name,
+	public Area(Long id, Integer pid, String shortname, String name,
 			String mergerName, Short level, String pinyin, String code,
 			String zipCode, String first, String location) {
 		super();
@@ -36,11 +36,11 @@ public class Area {
 		this.location = location;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
