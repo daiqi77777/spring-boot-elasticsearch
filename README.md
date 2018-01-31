@@ -19,6 +19,21 @@ spring-boot-starter-parent-1.5.9.RELEASE、spring-data-elasticsearch-2.1.9.RELEA
 
 截止2018年1月22日，ElasticSearch目前最新的已到6.1.2，但是spring-boot的更新速度远远跟不上ElasticSearch更新的速度，目前spring-boot支持的最新版本是elasticsearch-2.4.6。
 
+参考：https://github.com/spring-projects/spring-data-elasticsearch/wiki/Spring-Data-Elasticsearch---Spring-Boot---version-matrix
+
+![输入图片说明](https://gitee.com/uploads/images/2018/0131/091435_43db278d_87650.png "ESD.png")
+
+#### 接入方式
+
+使用spring-boot中的spring-data-elasticsearch,可以使用两种内置客户端接入
+
+1、节点客户端(node client)：
+配置文件中设置为local:false,节点客户端以无数据节点(node-master或node-client)身份加入集群，换言之，它自己不存储任何数据，但是它知道数据在集群中的具体位置，并且能够直接转发请求到对应的节点上。
+
+2、传输客户端(Transport client)：
+配置文件中设置为local:true,这个更轻量的传输客户端能够发送请求到远程集群。它自己不加入集群，只是简单转发请求给集群中的节点。
+两个Java客户端都通过9300端口与集群交互，使用Elasticsearch传输协议(Elasticsearch Transport Protocol)。集群中的节点之间也通过9300端口进行通信。如果此端口未开放，你的节点将不能组成集群。
+
 #### 服务说明
 
 ##### 使用本地ElasticSearch服务(application-dev.properties)
