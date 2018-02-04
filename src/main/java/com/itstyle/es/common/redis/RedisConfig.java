@@ -1,4 +1,4 @@
-package com.itstyle.es.log.queue;
+package com.itstyle.es.common.redis;
 
 import java.lang.reflect.Method;
 

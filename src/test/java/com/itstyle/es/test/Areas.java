@@ -7,7 +7,6 @@ import java.io.IOException;
 import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
 import org.elasticsearch.client.Requests;
 import org.elasticsearch.common.xcontent.XContentBuilder;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -41,7 +40,7 @@ public class Areas {
 	public void  search(){
 		areaService.searchAreaPage(0, 10, "搜索");
 	}
-	@Test
+	//@Test
 	public void  create(){
 		XContentBuilder mapping = null;
 		try {
@@ -54,34 +53,34 @@ public class Areas {
 					.startObject("id")
 							.field("type","long")
 					.endObject()
-					.startObject("name")
-						.field("pid","int")
+					.startObject("pid")//父id
+						.field("type","long")
 					.endObject()
-					.startObject("shortname")
+					.startObject("shortname")//简称
 						.field("type","string")
 					.endObject()
-					.startObject("name")
+					.startObject("name")//名称
 						.field("type","string")
 					.endObject()
-					.startObject("mergerName")
+					.startObject("mergerName")//全称 
 						.field("type","string")
 					.endObject()
-					.startObject("level")
+					.startObject("level")//层级 0 1 2 省市区县
 						.field("type","short")
 					.endObject()
-					.startObject("pinyin")
+					.startObject("pinyin")//拼音
 						.field("type","string")
 					.endObject()
-					.startObject("code")
+					.startObject("code") //长途区号
 						.field("type","string")
 					.endObject()
-					.startObject("zipCode")
+					.startObject("zipCode")//邮编
 						.field("type","string")
 					.endObject()
-					.startObject("location")
+					.startObject(" first")//首字母
 						.field("type","string")
 					.endObject()
-					.startObject("location")
+					.startObject("location")//经纬度
 						.field("type","geo_point")
 					.endObject()
 				.endObject()

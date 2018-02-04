@@ -5,6 +5,7 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,8 @@ public class LogController {
    private LogService logService;
    @Autowired
    private RedisTemplate<String, String> redisTemplate;
+   @Autowired
+   private KafkaTemplate<String, String> kafkaTemplate;
    
    
    @GetMapping(value="index")
@@ -35,8 +38,8 @@ public class LogController {
 		 Integer platFrom,String searchContent) {
 	  return logService.searchLogPage(pageNumber, pageSize, platFrom, searchContent);
    }
-   @GetMapping(value="log")
-   public @ResponseBody String log() {
+   @GetMapping(value="redisLog")
+   public @ResponseBody String redisLog() {
 	    SysLogs log = new SysLogs();
 		log.setUsername("小马云");
 		log.setOperation("开源中国社区");
@@ -54,6 +57,27 @@ public class LogController {
 		log.setTime((long)1);
 		//模拟日志队列实现
 		redisTemplate.convertAndSend("itstyle_log",log);
+		return "success";
+   }
+   @GetMapping(value="kafkaLog")
+   public @ResponseBody String kafkaLog() {
+	    SysLogs log = new SysLogs();
+		log.setUsername("红薯");
+		log.setOperation("开源中国社区");
+		log.setMethod("com.itstyle.es.log.controller.index()");
+		log.setIp("192.168.1.70");
+		log.setGmtCreate(new Timestamp(new Date().getTime()));
+		log.setExceptionDetail("开源中国社区");
+		log.setParams("{'name':'码云','type':'开源'}");
+		log.setDeviceType((short)1);
+		log.setPlatFrom((short)1);
+		log.setLogType((short)1);
+		log.setDeviceType((short)1);
+		log.setId((long)0);
+		log.setUserId((long)1);
+		log.setTime((long)1);
+		//模拟日志队列实现
+        kafkaTemplate.send("itstyle", "itstyle_log","科帮网");
 		return "success";
    }
 }

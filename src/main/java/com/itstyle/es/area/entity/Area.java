@@ -1,10 +1,14 @@
 package com.itstyle.es.area.entity;
+
+import org.springframework.data.elasticsearch.annotations.Document;
+
 /**
  * 区域数据
  */
+@Document(indexName="elasticsearch",type="area",indexStoreType="fs",shards=5,replicas=1,refreshInterval="-1")
 public class Area {
 	private Long id; 
-	private Integer pid;//父id
+	private Long pid;//父id
 	private String  shortname;//简称
 	private String  name;//名称
 	private String  mergerName;//全称 
@@ -19,7 +23,7 @@ public class Area {
 		super();
 	}
 
-	public Area(Long id, Integer pid, String shortname, String name,
+	public Area(Long id, Long pid, String shortname, String name,
 			String mergerName, Short level, String pinyin, String code,
 			String zipCode, String first, String location) {
 		super();
@@ -44,11 +48,11 @@ public class Area {
 		this.id = id;
 	}
 
-	public Integer getPid() {
+	public Long getPid() {
 		return pid;
 	}
 
-	public void setPid(Integer pid) {
+	public void setPid(Long pid) {
 		this.pid = pid;
 	}
 
