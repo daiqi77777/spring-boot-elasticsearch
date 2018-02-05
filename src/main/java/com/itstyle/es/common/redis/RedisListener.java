@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
  * 扫描监听
  * 创建者 科帮网
  * 创建时间	2018年1月24日
- *
  */
 @Component
 public class RedisListener {

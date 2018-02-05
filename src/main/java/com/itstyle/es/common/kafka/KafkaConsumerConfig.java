@@ -1,4 +1,8 @@
 package com.itstyle.es.common.kafka;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,15 +14,15 @@ import org.springframework.kafka.config.KafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.listener.ConcurrentMessageListenerContainer;
-
-import java.util.HashMap;
-import java.util.Map;
-
+/**
+ * 消费者
+ * 创建者 科帮网
+ * 创建时间	2018年2月4日
+ */
 @Configuration
 @EnableKafka
-public class Receiver {
-
-    @Value("${kafka.consumer.servers}")
+public class KafkaConsumerConfig {
+	@Value("${kafka.consumer.servers}")
     private String servers;
     @Value("${kafka.consumer.enable.auto.commit}")
     private boolean enableAutoCommit;
@@ -60,8 +64,7 @@ public class Receiver {
     }
 
     @Bean
-    public kafkaListener listener() {
-        return new kafkaListener();
+    public Listener listener() {
+        return new Listener();
     }
-
 }

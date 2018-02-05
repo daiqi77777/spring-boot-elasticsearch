@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.itstyle.es.common.utils.JsonMapper;
 import com.itstyle.es.log.entity.Pages;
 import com.itstyle.es.log.entity.SysLogs;
 import com.itstyle.es.log.service.LogService;
@@ -38,6 +40,9 @@ public class LogController {
 		 Integer platFrom,String searchContent) {
 	  return logService.searchLogPage(pageNumber, pageSize, platFrom, searchContent);
    }
+   /**
+    * redis 日志队列测试接口
+    */
    @GetMapping(value="redisLog")
    public @ResponseBody String redisLog() {
 	    SysLogs log = new SysLogs();
@@ -59,13 +64,17 @@ public class LogController {
 		redisTemplate.convertAndSend("itstyle_log",log);
 		return "success";
    }
+   /**
+    * kafka 日志队列测试接口
+ * @throws JsonProcessingException 
+    */
    @GetMapping(value="kafkaLog")
-   public @ResponseBody String kafkaLog() {
+   public @ResponseBody String kafkaLog() throws JsonProcessingException {
 	    SysLogs log = new SysLogs();
 		log.setUsername("红薯");
 		log.setOperation("开源中国社区");
-		log.setMethod("com.itstyle.es.log.controller.index()");
-		log.setIp("192.168.1.70");
+		log.setMethod("com.itstyle.es.log.controller.kafkaLog()");
+		log.setIp("192.168.1.80");
 		log.setGmtCreate(new Timestamp(new Date().getTime()));
 		log.setExceptionDetail("开源中国社区");
 		log.setParams("{'name':'码云','type':'开源'}");
@@ -73,11 +82,12 @@ public class LogController {
 		log.setPlatFrom((short)1);
 		log.setLogType((short)1);
 		log.setDeviceType((short)1);
-		log.setId((long)0);
+		log.setId((long)200000);
 		log.setUserId((long)1);
 		log.setTime((long)1);
 		//模拟日志队列实现
-        kafkaTemplate.send("itstyle", "itstyle_log","科帮网");
+		String json = JsonMapper.toJsonString(log);
+        kafkaTemplate.send("itstyle", "itstyle_log",json);
 		return "success";
    }
 }
