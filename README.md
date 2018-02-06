@@ -3,7 +3,9 @@
 
 其实做这个Demo的目的是如何基于Elasticsearch构建网站日志处理系统，通过数据同步工具等一些列开源组件来快速构建一个日志处理系统，项目雏形初步成型中。
 
-演示网址：http://es.52itstyle.com
+日志演示网址：http://es.52itstyle.com
+
+区域演示网址：http://es.52itstyle.com/area/index
 
 当然，项目功能会逐步增加，实现一个365°全方位的Demo案例。
 
