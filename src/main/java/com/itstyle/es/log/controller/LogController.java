@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.itstyle.es.common.utils.JsonMapper;
 import com.itstyle.es.log.entity.Pages;
 import com.itstyle.es.log.entity.SysLogs;
@@ -66,10 +65,9 @@ public class LogController {
    }
    /**
     * kafka 日志队列测试接口
- * @throws JsonProcessingException 
     */
    @GetMapping(value="kafkaLog")
-   public @ResponseBody String kafkaLog() throws JsonProcessingException {
+   public @ResponseBody String kafkaLog() {
 	    SysLogs log = new SysLogs();
 		log.setUsername("红薯");
 		log.setOperation("开源中国社区");

@@ -449,7 +449,7 @@ public void bulkIndex(List<SysLogs> logList) {
 
 ## Redis日志队列
 
-见包：com.itstyle.es.log.queue
+见包：com.itstyle.es.common.redis
 
 监听配置 RedisListener：
 ```
@@ -527,55 +527,11 @@ public class Receiver {
 }
 ```
 
-测试 LogController：http://lip:port/log
+测试 LogController：http://lip:port/redisLog
 
+## Kafka日志队列
 
-## 简介
-
-Elasticsearch （ES）是一个基于 Lucene 的开源搜索引擎，它不但稳定、可靠、快速，而且也具有良好的水平扩展能力，是专门为分布式环境设计的。
-
-### 特性
-
-- 安装方便：没有其他依赖，下载后安装非常方便；只用修改几个参数就可以搭建起来一个集群
-- JSON：输入/输出格式为 JSON，意味着不需要定义 Schema，快捷方便
-- RESTful：基本所有操作（索引、查询、甚至是配置）都可以通过 HTTP 接口进行
-- 分布式：节点对外表现对等（每个节点都可以用来做入口）；加入节点自动均衡
-- 多租户：可根据不同的用途分索引；可以同时操作多个索引
-
-### 集群
-
-其中一个节点就是一个 ES 进程，多个节点组成一个集群。一般每个节点都运行在不同的操作系统上，配置好集群相关参数后 ES 会自动组成集群（节点发现方式也可以配置）。集群内部通过 ES 的选主算法选出主节点，而集群外部则是可以通过任何节点进行操作，无主从节点之分（对外表现对等/去中心化，有利于客户端编程，例如故障重连）。
-
-### 索引
-
-![输入图片说明](https://gitee.com/uploads/images/2018/0122/113919_debba243_87650.png "ES.png")
-
-Elasticsearch集群可以包含多个索引(indices)（数据库），每一个索引可以包含多个类型(types)（表），每一个类型包含多个文档(documents)（行），然后每个文档包含多个字段(Fields)（列）
-
-```
-Relational DB -> Databases -> Tables -> Rows -> Columns
-Elasticsearch -> Indices  -> Types -> Documents -> Fields
-```
-
-
-### 分片
-
-ES 是一个分布式系统，我们一开始就应该以集群的方式来使用它。它保存索引时会选择适合的“主分片”（Primary Shard），把索引保存到其中（我们可以把分片理解为一块物理存储区域）。分片的分法是固定的，而且是安装时候就必须要决定好的（默认是 5），后面就不能改变了。
-
-既然有主分片，那肯定是有“从”分片的，在 ES 里称之为“副本分片”（Replica Shard）。副本分片主要有两个作用：
-
-- 高可用：某分片节点挂了的话可走其他副本分片节点，节点恢复后上面的分片数据可通过其他节点恢复
-- 负载均衡：ES 会自动根据负载情况控制搜索路由，副本分片可以将负载均摊
-
-### RESTful
-
-这个特性非常方便，最关键的是 ES 的 HTTP 接口不只是可以进行业务操作（索引/搜索），还可以进行配置，甚至是关闭 ES 集群。下面我们介绍几个很常用的接口：
-
-- /_cat/nodes?v：查集群状态
-- /_cat/shards?v：查看分片状态
-- /${index}/${type}/_search?pretty：搜索
-
-v 是 verbose 的意思，这样可以更可读（有表头，有对齐），_cat 是监测相关的 APIs，/_cat?help 来获取所有接口。${index} 和 ${type} 分别是具体的某一索引某一类型，是分层次的。我们也可以直接在所有索引所有类型上进行搜索：/_search。
+见包： com.itstyle.es.common.kafka
 
 
 作者： 小柒2012

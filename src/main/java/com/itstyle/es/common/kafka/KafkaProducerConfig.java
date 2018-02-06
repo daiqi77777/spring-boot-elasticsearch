@@ -13,7 +13,7 @@ import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 /**
- * 提供者
+ * 生产者
  * 创建者 科帮网
  * 创建时间	2018年2月4日
  */

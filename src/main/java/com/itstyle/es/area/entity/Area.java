@@ -1,22 +1,30 @@
 package com.itstyle.es.area.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.GeoPointField;
 
 /**
  * 区域数据
  */
 @Document(indexName="elasticsearch",type="area",indexStoreType="fs",shards=5,replicas=1,refreshInterval="-1")
 public class Area {
+	@Id
 	private Long id; 
 	private Long pid;//父id
+	@Field(analyzer="ik",searchAnalyzer="ik")
 	private String  shortname;//简称
+	@Field(analyzer="ik",searchAnalyzer="ik")
 	private String  name;//名称
+	@Field(analyzer="ik",searchAnalyzer="ik")
 	private String  mergerName;//全称 
 	private Short   level; //层级 0 1 2 省市区县
 	private String  pinyin;//拼音
 	private String  code; //长途区号
 	private String  zipCode; //邮编
 	private String  first; //首字母
+	@GeoPointField
 	private String  location;//经纬度
 	
 	public Area() {

@@ -19,4 +19,6 @@ public interface AreaService {
      * @return JSON
      */
     Pages<Area> searchAreaPage(Integer pageNumber, Integer pageSize, String searchContent);
+    
+    void getNearbyAreas(double lat, double lon);
 }

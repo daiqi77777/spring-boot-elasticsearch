@@ -88,6 +88,12 @@
 		    <artifactId>commons-lang3</artifactId>
 		    <version>3.5</version>
 		</dependency>
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>5.1.6</version><!--$NO-MVN-MAN-VER$-->
+		</dependency>
+		
 		
 	</dependencies>
   <build>

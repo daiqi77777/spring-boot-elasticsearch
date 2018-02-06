@@ -24,7 +24,7 @@
 		<i-button type="primary"  icon="ios-search" @click="list"  >查询</i-button>
 	</div>
 	<template> 
-		<i-table border  :content="self" :columns="tableTitle" :data="consultData"></i-table>
+		<i-table border  :content="self" :columns="tableTitle" :data="logData"></i-table>
 	 	<br>
 		<Page :current="log.pageNumber" :total="total" :page-size="log.pageSize"  @on-change="changePage" @on-page-size-change="changePageSize" show-elevator show-sizer show-total></Page> 
 	</template>
@@ -66,7 +66,7 @@ var vm = new Vue({
 						}
 					}},
 		            ],
-        consultData:[
+		logData:[
 				         
         ]
 	},
@@ -78,7 +78,7 @@ var vm = new Vue({
 			    data: this.log,
 			    dataType: "json",
 			    success: function(result){
-					vm.consultData = result.rows;
+					vm.logData = result.rows;
 					vm.total = result.total;
 				}
 			});
