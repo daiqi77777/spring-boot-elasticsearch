@@ -7,9 +7,11 @@
 
 区域演示网址：http://es.52itstyle.com/area/index
 
-[JavaWeb项目架构之Elasticsearch日志处理系统](https://blog.52itstyle.com/archives/2339/)：https://blog.52itstyle.com/archives/2339/
-[JavaWeb项目架构之Redis分布式日志队列](https://blog.52itstyle.com/archives/2320/)：https://blog.52itstyle.com/archives/2320/
-[JavaWeb项目架构之Kafka分布式日志队列](https://blog.52itstyle.com/archives/2358/)：https://blog.52itstyle.com/archives/2358/
+[JavaWeb项目架构之Elasticsearch日志处理系统](https://blog.52itstyle.com/archives/2339/)
+
+[JavaWeb项目架构之Redis分布式日志队列](https://blog.52itstyle.com/archives/2320/)
+
+[JavaWeb项目架构之Kafka分布式日志队列](https://blog.52itstyle.com/archives/2358/)
 
 当然，项目功能会逐步增加，实现一个365°全方位的Demo案例。
 
