@@ -7,11 +7,6 @@
 
 区域演示网址：http://es.52itstyle.com/area/index
 
-[JavaWeb项目架构之Elasticsearch日志处理系统](https://blog.52itstyle.com/archives/2339/)
-
-[JavaWeb项目架构之Redis分布式日志队列](https://blog.52itstyle.com/archives/2320/)
-
-[JavaWeb项目架构之Kafka分布式日志队列](https://blog.52itstyle.com/archives/2358/)
 
 当然，项目功能会逐步增加，实现一个365°全方位的Demo案例。
 
@@ -542,6 +537,13 @@ public class Receiver {
 见包： com.itstyle.es.common.kafka
 
 
+## 推荐阅读
+
+[JavaWeb项目架构之Elasticsearch日志处理系统](https://blog.52itstyle.com/archives/2339/)
+
+[JavaWeb项目架构之Redis分布式日志队列](https://blog.52itstyle.com/archives/2320/)
+
+[JavaWeb项目架构之Kafka分布式日志队列](https://blog.52itstyle.com/archives/2358/)
 
 
 作者： 小柒2012
