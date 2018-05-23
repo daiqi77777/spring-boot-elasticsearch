@@ -3,7 +3,10 @@
 
 其实做这个Demo的目的是如何基于Elasticsearch构建网站日志处理系统，通过数据同步工具等一些列开源组件来快速构建一个日志处理系统，项目雏形初步成型中。
 
-演示网址：http://es.52itstyle.com
+日志演示网址：http://es.52itstyle.com
+
+区域演示网址：http://es.52itstyle.com/area/index
+
 
 当然，项目功能会逐步增加，实现一个365°全方位的Demo案例。
 
@@ -12,6 +15,14 @@
 ## 开发环境
 
 JDK1.7、Maven、Eclipse、SpringBoot1.5.9、elasticsearch2.4.6、Dubbox2.8.4、zookeeper3.4.6、Redis、kafka、Vue、Iview
+
+
+## QQ群
+
+- JAVA爱好者④:<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=eba7a5d6f672c67cf942e08486e5102f0a0a6268206f873fef48a9d74f248de8"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="JAVA爱好者" title="JAVA爱好者"></a>
+- JAVA爱好者①:<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=f316b04ba30f31190c0d8120b5c54acf245299726b4450fb6fc64753dd546bf8"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="JAVA爱好者①" title="JAVA爱好者①"></a>(满)
+- JAVA爱好者②:<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=b2fc105d5cf11231cd863dc829b82f50454b693ad20b892a362de5adbcc9b0b3"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="JAVA爱好者②" title="JAVA爱好者②"></a>(满)
+- JAVA爱好者③:<a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=cbee3cb06364401522ea90776a1bd83cdbbed20622b93a37158d41460537db96"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="JAVA爱好者③" title="JAVA爱好者③"></a>(满)
 
 #### 版本介绍
 
@@ -532,6 +543,15 @@ public class Receiver {
 ## Kafka日志队列
 
 见包： com.itstyle.es.common.kafka
+
+
+## 推荐阅读
+
+[JavaWeb项目架构之Elasticsearch日志处理系统](https://blog.52itstyle.com/archives/2339/)
+
+[JavaWeb项目架构之Redis分布式日志队列](https://blog.52itstyle.com/archives/2320/)
+
+[JavaWeb项目架构之Kafka分布式日志队列](https://blog.52itstyle.com/archives/2358/)
 
 
 作者： 小柒2012
