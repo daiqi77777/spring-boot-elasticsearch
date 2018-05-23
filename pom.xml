@@ -104,7 +104,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
-                    <maimClass>com.itstyle.es.Application</maimClass>
+                    <mainClass>com.itstyle.es.Application</mainClass>
                 </configuration>
                 <executions>
                     <execution>
