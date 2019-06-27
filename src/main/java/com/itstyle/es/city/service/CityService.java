@@ -1,7 +1,9 @@
 package com.itstyle.es.city.service;
 
+import com.alibaba.dubbo.config.annotation.Service;
 import com.itstyle.es.city.entity.City;
 
+@Service
 public interface CityService {
 	/**
 	 * 新增城市

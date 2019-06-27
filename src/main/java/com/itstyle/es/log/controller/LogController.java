@@ -3,7 +3,6 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Controller;
@@ -20,8 +19,6 @@ import com.itstyle.es.log.service.LogService;
 @RequestMapping(value = "")
 public class LogController {
    
-   @Autowired
-   private  ElasticsearchTemplate elasticSearchTemplate;
    @Autowired
    private LogService logService;
    @Autowired

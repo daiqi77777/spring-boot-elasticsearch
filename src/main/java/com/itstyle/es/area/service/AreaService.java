@@ -1,8 +1,9 @@
 package com.itstyle.es.area.service;
+import com.alibaba.dubbo.config.annotation.Service;
 import com.itstyle.es.area.entity.Area;
 import com.itstyle.es.log.entity.Pages;
 
-
+@Service
 public interface AreaService {
     /**
 	 * 新增区域

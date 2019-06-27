@@ -2,13 +2,11 @@ package com.itstyle.es.common.redis;
 
 import java.lang.reflect.Method;
 
-import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -43,20 +41,6 @@ public class RedisConfig extends CachingConfigurerSupport {
 				return sb.toString();
 			}
 		};
-	}
-    /**
-     * 缓存管理器
-     * @Author  科帮网
-     * @param redisTemplate
-     * @return  CacheManager
-     * @Date	2017年8月13日
-     * 更新日志
-     * 2018年1月24日  科帮网 首次创建
-     */
-	@SuppressWarnings("rawtypes")
-	@Bean
-	public CacheManager cacheManager(RedisTemplate redisTemplate) {
-		return new RedisCacheManager(redisTemplate);
 	}
     /**
      * 序列化Java对象

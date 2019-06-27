@@ -1,6 +1,5 @@
 package com.itstyle.es.area.controller;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,8 +13,6 @@ import com.itstyle.es.log.entity.Pages;
 @RequestMapping(value = "area")
 public class AreaController {
    
-   @Autowired
-   private  ElasticsearchTemplate elasticSearchTemplate;
    @Autowired
    private AreaService areaService;
    

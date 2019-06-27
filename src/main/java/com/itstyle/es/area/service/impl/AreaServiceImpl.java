@@ -3,6 +3,7 @@ import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.elasticsearch.common.geo.GeoDistance;
+import org.elasticsearch.common.geo.GeoPoint;
 import org.elasticsearch.common.unit.DistanceUnit;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
@@ -19,14 +20,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.itstyle.es.area.entity.Area;
 import com.itstyle.es.area.repository.ElasticAreaRepository;
 import com.itstyle.es.area.service.AreaService;
 import com.itstyle.es.common.constant.PageConstant;
 import com.itstyle.es.log.entity.Pages;
-@Service("areaService")
+@Component
 public class AreaServiceImpl implements AreaService {
 	private static final Logger logger = LoggerFactory.getLogger(AreaServiceImpl.class);
     
@@ -96,8 +97,8 @@ public class AreaServiceImpl implements AreaService {
         }
         //设置排序
         FieldSortBuilder sort = SortBuilders.fieldSort("id").order(SortOrder.DESC);
-        //设置分页
-        Pageable pageable = new PageRequest(pageNumber, pageSize);
+        //设置分页 此处升级
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
         
         return new NativeSearchQueryBuilder()
                 .withPageable(pageable)
@@ -120,19 +121,20 @@ public class AreaServiceImpl implements AreaService {
 		 * 找出落在多边形中的点。这个过滤器使用代价很大。当你觉得自己需要使用它，最好先看看 geo-shapes
 		 */
 		//创建builder
-		QueryBuilder  builder = QueryBuilders.geoDistanceRangeQuery("location")
-        		.point(lat,lon)//纬度在前，经度在后  
+		GeoPoint point = new GeoPoint(lat,lon);
+		QueryBuilder  builder = QueryBuilders.geoDistanceRangeQuery("location",point)
+        		//.point(lat,lon)//纬度在前，经度在后
                 .from("0km")  
                 .to("400km")  
                 .includeLower(true)  
                 .includeUpper(false)  
-                .optimizeBbox("memory")  
+                //.optimizeBbox("memory")
                 .geoDistance(GeoDistance.ARC);  
         //字段精确匹配
-	    GeoDistanceSortBuilder sort = new GeoDistanceSortBuilder("location");  
+	    GeoDistanceSortBuilder sort = new GeoDistanceSortBuilder("location",point);
         sort.unit(DistanceUnit.KILOMETERS);//距离单位公里  
         sort.order(SortOrder.ASC);  
-        sort.point(lat,lon);//注意纬度在前，经度在后  
+        //sort.point(lat,lon);//注意纬度在前，经度在后
         SearchQuery searchQuery   = new NativeSearchQueryBuilder()
                 .withQuery(builder)
                 .withSort(sort)

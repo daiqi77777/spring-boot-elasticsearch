@@ -1,24 +1,29 @@
 package com.itstyle.es;
+import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ImportResource;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 /**
  * 启动类
  * 创建者  小柒2012
- * 网址 https://blog.52itstyle.com
+ * 网址 https://blog.52itstyle.vip
  * 创建时间	2018年1月22日
- * linux 下 后台启动  nohup java -jar acts_elasticsearch.jar --server.port=8886 & 
+ * linux 下 后台启动  nohup java -jar spring-boot2-elasticsearch.jar --server.port=8080 &
+ *
+ * 5.4文档 ：http://cwiki.apachecn.org/pages/viewpage.action?pageId=4260364
+ *
+ * kafka :https://www.apache.org/dyn/closer.cgi?path=/kafka/2.3.0/kafka_2.11-2.3.0.tgz
+ *
  */
 @SpringBootApplication
-//不想使用可以注释掉
-@ImportResource({"classpath:spring-context-dubbo.xml"})
-public class Application extends WebMvcConfigurerAdapter {
+@EnableDubboConfiguration
+public class Application extends SpringBootServletInitializer {
 	private static final Logger logger = Logger.getLogger(Application.class);
 	
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args){
+		System.setProperty("es.set.netty.runtime.available.processors", "false");
 		SpringApplication.run(Application.class, args);
-		logger.info("全文搜索服务启动 ");
+		logger.info("全文搜索服务启动");
 	}
 }

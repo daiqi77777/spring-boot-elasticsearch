@@ -1,4 +1,5 @@
 package com.itstyle.es.log.service.impl;
+import com.alibaba.dubbo.config.annotation.Service;
 import org.apache.commons.lang.StringUtils;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
@@ -13,14 +14,15 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
-import org.springframework.stereotype.Service;
 
 import com.itstyle.es.common.constant.PageConstant;
 import com.itstyle.es.log.entity.Pages;
 import com.itstyle.es.log.entity.SysLogs;
 import com.itstyle.es.log.repository.ElasticLogRepository;
 import com.itstyle.es.log.service.LogService;
-@Service("logService")
+import org.springframework.stereotype.Component;
+
+@Component
 public class LogServiceImpl implements LogService {
 	private static final Logger logger = LoggerFactory.getLogger(LogServiceImpl.class);
     
@@ -94,8 +96,8 @@ public class LogServiceImpl implements LogService {
         }
         //设置排序
         FieldSortBuilder sort = SortBuilders.fieldSort("id").order(SortOrder.DESC);
-        //设置分页
-        Pageable pageable = new PageRequest(pageNumber, pageSize);
+        //设置分页 此处升级
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
         
         return new NativeSearchQueryBuilder()
                 .withPageable(pageable)
@@ -103,5 +105,4 @@ public class LogServiceImpl implements LogService {
                 .withSort(sort)
                 .build();
     }
-
 }
