@@ -25,7 +25,7 @@ public class Logs {
 	public void  send(){
 		System.out.println("组织数据开始");
 		List<SysLogs> logList = new ArrayList<SysLogs>();
-		for(long i=374000;i<400000;i++){
+		for(long i=0;i<1000;i++){
 			SysLogs log = new SysLogs();
 			log.setUsername("码云");
 			log.setOperation("开源中国社区");
@@ -43,7 +43,7 @@ public class Logs {
 			log.setTime(i);
 			logList.add(log);
 		}
-		for(long i=400000;i<=500000;i++){
+		for(long i=1001;i<=2000;i++){
 			SysLogs log = new SysLogs();
 			log.setUsername("马云");
 			log.setOperation("阿里巴巴智能汽车");
