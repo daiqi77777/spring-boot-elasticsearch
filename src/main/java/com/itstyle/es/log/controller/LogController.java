@@ -2,6 +2,7 @@ package com.itstyle.es.log.controller;
 import java.sql.Timestamp;
 import java.util.Date;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -22,7 +23,7 @@ public class LogController {
    
    @Autowired
    private  ElasticsearchTemplate elasticSearchTemplate;
-   @Autowired
+   @Reference
    private LogService logService;
    @Autowired
    private RedisTemplate<String, String> redisTemplate;

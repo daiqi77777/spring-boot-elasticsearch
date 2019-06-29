@@ -48,8 +48,9 @@ public class AreaServiceImpl implements AreaService {
 
         if (pageNumber == null || pageNumber < PageConstant.DEFAULT_PAGE_NUMBER) {
             pageNumber = PageConstant.DEFAULT_PAGE_NUMBER;
-        }
-
+        }else{
+			pageNumber = pageNumber-1;
+		}
         // 构建搜索查询
         SearchQuery searchQuery = getLogSearchQuery(pageNumber,pageSize,searchContent);
 

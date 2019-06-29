@@ -10,6 +10,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * 网址 https://blog.52itstyle.vip
  * 创建时间	2018年1月22日
  * linux 下 后台启动  nohup java -jar spring-boot-elasticsearch.jar --server.port=8886 &
+ *
+ * Kafka 启动：.\bin\windows\zookeeper-server-start.bat  .\config\zookeeper.properties
  */
 @SpringBootApplication
 @EnableDubboConfiguration
@@ -18,6 +20,6 @@ public class Application extends WebMvcConfigurerAdapter {
 	
 	public static void main(String[] args){
 		SpringApplication.run(Application.class, args);
-		logger.info("全文搜索服务启动 ");
+		logger.info("全文搜索服务启动");
 	}
 }

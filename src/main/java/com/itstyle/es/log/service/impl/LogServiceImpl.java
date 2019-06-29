@@ -13,14 +13,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Component;
 import com.itstyle.es.common.constant.PageConstant;
 import com.itstyle.es.log.entity.Pages;
 import com.itstyle.es.log.entity.SysLogs;
 import com.itstyle.es.log.repository.ElasticLogRepository;
 import com.itstyle.es.log.service.LogService;
-@Service("logService")
+@Component
 public class LogServiceImpl implements LogService {
 	private static final Logger logger = LoggerFactory.getLogger(LogServiceImpl.class);
     
@@ -42,6 +41,8 @@ public class LogServiceImpl implements LogService {
 
         if (pageNumber == null || pageNumber < PageConstant.DEFAULT_PAGE_NUMBER) {
             pageNumber = PageConstant.DEFAULT_PAGE_NUMBER;
+        }else{
+            pageNumber = pageNumber-1;
         }
 
         // 构建搜索查询

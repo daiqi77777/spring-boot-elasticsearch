@@ -1,8 +1,9 @@
 package com.itstyle.es.log.service;
+import com.alibaba.dubbo.config.annotation.Service;
 import com.itstyle.es.log.entity.Pages;
 import com.itstyle.es.log.entity.SysLogs;
 
-
+@Service
 public interface LogService {
     /**
 	 * 新增日志

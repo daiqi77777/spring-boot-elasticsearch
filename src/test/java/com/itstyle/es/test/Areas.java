@@ -100,11 +100,11 @@ public class Areas {
 			e.printStackTrace();
 		}
 	}
-	private static final String URL = "jdbc:mysql://192.168.1.180:3306/cat?characterEncoding=UTF-8";
+	private static final String URL = "jdbc:mysql://127.0.0.1:3306/seckill?characterEncoding=UTF-8";
 	private static final String USERNAME = "root";
-	private static final String PASS = "root";
+	private static final String PASS = "123456";
 	
-	//@Test
+	@Test
 	public void  saveAreaBySql(){
 		List<Area> areaList = readSceneList();
 		System.out.println(areaList.size());
