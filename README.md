@@ -1,3 +1,7 @@
+## 启动说明
+
+[请点击参考](https://gitee.com/52itstyle/spring-boot-elasticsearch/wikis/%E5%90%AF%E5%8A%A8%E8%AF%B4%E6%98%8E?sort_id=1513173)
+
 ## 日志处理
 
 
