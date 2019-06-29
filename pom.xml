@@ -10,7 +10,7 @@
   
     <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.7</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 	<!-- spring-boot-starter-parent包含了大量配置好的依赖管理，在自己项目添加这些依赖的时候不需要写<version>版本号 -->
 	<parent>
@@ -51,24 +51,27 @@
 		    <artifactId>jna</artifactId>
 		    <version>3.0.9</version>
 		</dependency>
-		<!-- zookeeper -->
-		<dependency>
-			<groupId>com.101tec</groupId>
-			<artifactId>zkclient</artifactId>
-			<version>0.6</version>
-		</dependency>
-		<!-- 这里使用最新的2.8.4版本，中央仓库不存在，请自行打入本地仓库 -->
-		<!-- 百度网盘：http://pan.baidu.com/s/1gfxiuYZ -->
-	    <!-- 或者使用最新版本 http://mvnrepository.com/artifact/com.alibaba/dubbo-->
+		<!-- dubbo 分布式远程调用 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>dubbo</artifactId>
-			<version>2.8.4</version>
+			<version>2.6.2</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.javassist</groupId>
-		    <artifactId>javassist</artifactId>
-		    <version>3.22.0-GA</version><!--$NO-MVN-MAN-VER$-->
+			<groupId>org.apache.zookeeper</groupId>
+			<artifactId>zookeeper</artifactId>
+			<version>3.4.13</version>
+		</dependency>
+		<dependency>
+			<groupId>com.alibaba.spring.boot</groupId>
+			<artifactId>dubbo-spring-boot-starter</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+		<!-- curator-recipes-->
+		<dependency>
+			<groupId>org.apache.curator</groupId>
+			<artifactId>curator-recipes</artifactId>
+			<version>4.0.1</version>
 		</dependency>
 		<!-- json -->
 		<dependency>
@@ -93,8 +96,6 @@
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>5.1.6</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
-		
-		
 	</dependencies>
   <build>
     <finalName>spring-boot-elasticsearch</finalName>
@@ -118,9 +119,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<encoding>UTF-8</encoding>
-				</configuration>
 				<executions>
 					<execution>
 					    <id>service</id>  
