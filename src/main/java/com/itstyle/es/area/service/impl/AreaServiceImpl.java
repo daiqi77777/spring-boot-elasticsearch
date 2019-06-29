@@ -33,7 +33,6 @@ public class AreaServiceImpl implements AreaService {
     
 	@Autowired
 	private ElasticAreaRepository elasticAreaRepository;
-	 
 	@Override
 	public void saveArea(Area area) {
 		elasticAreaRepository.save(area);

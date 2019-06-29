@@ -13,6 +13,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  *
  * 5.4文档 ：http://cwiki.apachecn.org/pages/viewpage.action?pageId=4260364
  *
+ * 5.6.9下载地址：https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.9.zip
+ *
  * kafka :https://www.apache.org/dyn/closer.cgi?path=/kafka/2.3.0/kafka_2.11-2.3.0.tgz
  *
  */
