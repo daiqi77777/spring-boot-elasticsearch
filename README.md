@@ -3,9 +3,13 @@
 
 其实做这个Demo的目的是如何基于Elasticsearch构建网站日志处理系统，通过数据同步工具等一些列开源组件来快速构建一个日志处理系统，项目雏形初步成型中。
 
-日志演示网址：http://es.52itstyle.com   (内存不存、演示暂停)
+日志演示网址：http://es.52itstyle.vip   (内存不存、演示暂停)
 
-区域演示网址：http://es.52itstyle.com/area/index  (内存不存、演示暂停)
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/184329_a931b0a9_87650.png "屏幕截图.png")
+
+区域演示网址：http://es.52itstyle.vip/area/index  (内存不存、演示暂停)
+
+![输入图片说明](https://images.gitee.com/uploads/images/2019/0629/184355_fae0e564_87650.png "屏幕截图.png")
 
 
 当然，项目功能会逐步增加，实现一个365°全方位的Demo案例。
@@ -543,13 +547,13 @@ public class Receiver {
 
 ## 推荐阅读
 
-[JavaWeb项目架构之Elasticsearch日志处理系统](https://blog.52itstyle.com/archives/2339/)
+[JavaWeb项目架构之Elasticsearch日志处理系统](https://blog.52itstyle.vip/archives/2339/)
 
-[JavaWeb项目架构之Redis分布式日志队列](https://blog.52itstyle.com/archives/2320/)
+[JavaWeb项目架构之Redis分布式日志队列](https://blog.52itstyle.vip/archives/2320/)
 
-[JavaWeb项目架构之Kafka分布式日志队列](https://blog.52itstyle.com/archives/2358/)
+[JavaWeb项目架构之Kafka分布式日志队列](https://blog.52itstyle.vip/archives/2358/)
 
 
 作者： 小柒2012
 
-欢迎关注： https://blog.52itstyle.com
+欢迎关注： https://blog.52itstyle.vip
