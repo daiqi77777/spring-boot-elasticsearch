@@ -4,6 +4,8 @@
 
 ## 日志处理
 
+SpringBoot2.0版本：[https://gitee.com/52itstyle/spring-boot-elasticsearch/tree/spring-boot2-elasticsearch/](https://gitee.com/52itstyle/spring-boot-elasticsearch/tree/spring-boot2-elasticsearch/)
+
 
 其实做这个Demo的目的是如何基于Elasticsearch构建网站日志处理系统，通过数据同步工具等一些列开源组件来快速构建一个日志处理系统，项目雏形初步成型中。
 
