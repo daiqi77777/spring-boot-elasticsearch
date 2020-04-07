@@ -25,6 +25,7 @@ public class AreaController {
    }
    @PostMapping(value="list")
    public @ResponseBody Pages<Area>  list(Integer pageNumber,Integer pageSize,String searchContent) {
+      int a =1;
 	  return areaService.searchAreaPage(pageNumber, pageSize, searchContent);
    }
 }
